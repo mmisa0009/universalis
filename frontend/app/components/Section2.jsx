@@ -46,7 +46,7 @@ export default function Section2() {
 
     return (
         <div className="mx-auto my-8 px-6">
-            <h2 className="text-[4vw]">Announcements</h2>
+            <h2 className="text-[4vw] tracking-[-0.06em]">Announcements</h2>
             <hr className="border-t border-gray-700 my-4" />
             <div className="swiper announcements-swiper  py-8 mx-auto my-4 w-[95%] pb-30">
                 <div className="swiper-wrapper">
@@ -63,13 +63,13 @@ export default function Section2() {
                         )}
                         <div className="flex flex-col items-start text-left px-3">
                             <div className="mt-1">
-                                <h3 className="mb-0.5 text-[2vw]">{announcement.title}</h3>
-                                <p className="text-[1.8vw] mb-0.1">{announcement.time}</p>
-                                <p className="text-[1.8vw] mb-0.1">{announcement.location}</p>
+                                <h3 className="mb-0.5 text-[1.4vw]">{announcement.title}</h3>
+                                <p className="text-[1.2vw] mb-0.1">{announcement.time}</p>
+                                <p className="text-[1.2vw] mb-0.1">{announcement.location}</p>
                             </div>
                             <div className=" flex flex-wrap gap-2 mt-2">
                                 {announcement.tags.map((tag, tagIndex) => (
-                                    <span key={tagIndex} className="tag bg-[#FFF8F0] text-[#001C3D] p-[0.4em] text-sm rounded-[50px] ">
+                                    <span key={tagIndex} className="tag text-[1.1vw] bg-[#FFF8F0] text-[#001C3D] p-[0.4em] text-sm rounded-[50px] ">
                                     {tag}
                                     </span>
                                 ))}

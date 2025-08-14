@@ -7,8 +7,8 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="flex justify-center mt-5">
-            <nav className="sticky h-10 top-[2vw] bg-[rgba(255,255,255,0.5)] flex items-center justify-center gap-[5%] px-[3vw] rounded-[50px] mx-auto mb-4 z-50 text-[1vmin] w-[60vw]">
+        <div className="flex justify-center mt-12">
+            <nav className=" fixed h-10 top-[1.5vw] bg-[rgba(255,255,255,0.5)] flex items-center justify-center gap-[5%] px-[3vw] rounded-[50px] mx-auto mb-4 z-50 text-[1vmin] w-[53vw]">
                 <div 
                 className="relative inline-block"
                 onMouseEnter={() => setIsOpen(true)}

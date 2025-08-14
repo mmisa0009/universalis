@@ -4,7 +4,9 @@
     box-sizing: border-box;
 }
 
-* {
+
+
+p {
   letter-spacing: -0.04em;
   font-family: 'Inter', sans-serif;
   /* in case it does not work 
@@ -42,7 +44,7 @@
 
 
 .section3-bg {
-    background-image: url(/assets/ucm-building.png); 
+    background-image: url(/ucm-building.png); 
     background-size: 100vw;
     background-repeat: no-repeat;
     background-attachment: fixed;
