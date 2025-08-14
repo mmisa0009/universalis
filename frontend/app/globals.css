@@ -28,18 +28,25 @@ p {
   100% {transform: translate(100vw);}
 }
 
-.member-slider.animate .member {
-  animation-play-state: running;
-}
+
 
 .member-slider.ab .member {
-  animation: scroll-left 7s linear infinite paused;
+  animation: scroll-left 7s linear infinite;
+  animation-play-state: paused;
 }
 .member-slider.eb .member {
-  animation: scroll-left 6s linear infinite paused;
+  animation: scroll-left 6s linear infinite;
+  animation-play-state: paused;
 }
 .member-slider.sb .member {
-    animation: scroll-right 5.5s linear infinite paused;
+    animation: scroll-right 5.5s linear infinite;
+    animation-play-state: paused;
+}
+
+.member-slider.animate.ab .member,
+.member-slider.animate.eb .member,
+.member-slider.animate.sb .member {
+  animation-play-state: running;
 }
 
 
