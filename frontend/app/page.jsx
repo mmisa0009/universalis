@@ -10,8 +10,9 @@ export default function HomePage() {
     return (
         <>
             <Navbar />
+             
             <Section1 />
-
+            {/*
             <div className='block mx-auto text-right text-[2.5vw] p-4 pt-0'>
                 Enjoy the social and academic activities supported by Universalis.
             </div>
@@ -21,6 +22,7 @@ export default function HomePage() {
             <Section4 />
             <Section5 />
             <Footer />
+            */}
         </>
     );
 }

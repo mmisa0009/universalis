@@ -1,4 +1,4 @@
-import './global.css';
+import './globals.css';
 import {Inter, Be_Vietnam_Pro, Playfair_Display, Roboto} from 'next/font/google';
 
 const inter = Inter({subsets: ['latin'], variable: '--font-inter'});
