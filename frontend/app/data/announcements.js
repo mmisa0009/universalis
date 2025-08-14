@@ -1,20 +1,20 @@
 export const announcements = [
     {
-        img: "/assets/GA_jan2025 1.png",
+        img: "/GA_jan2025 1.png",
         title: "Annual General Meeting",
         time: "Jan 16th 18:30~",
         location: "UCM Lecture Hall",
         tags: ["Executive Board"]
     },
     {
-        img: "/assets/music_Nov25 1.png",
+        img: "/music_Nov25 1.png",
         title: "Open Mic Night",
         time: "Jan 20th",
         location: "Common Room",
         tags: ["Music"]
     },
     {
-        img: "/assets/Bookclub_Nov25 1.png",
+        img: "/Bookclub_Nov25 1.png",
         title: "Game Night",
         time: "Feb 5th 18:30~",
         location: "room 101",

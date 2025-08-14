@@ -12,6 +12,10 @@
   */
 }
 
+.swiper-pagination {
+  position: relative !important;
+}
+
 @keyframes scroll-right {
   0% {transform: translate(100vw);}
   100% {transform: translate(-100vw);}
@@ -35,6 +39,7 @@
 .member-slider.sb .member {
     animation: scroll-right 5.5s linear infinite paused;
 }
+
 
 .section3-bg {
     background-image: url(/assets/ucm-building.png); 
