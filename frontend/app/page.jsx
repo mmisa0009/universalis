@@ -12,6 +12,7 @@ export default function HomePage() {
             <Navbar />
              
             <div id="section1">
+                
                 <Section1 />
             </div>
             
