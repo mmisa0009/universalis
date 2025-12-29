@@ -3,7 +3,6 @@ export default function InputField({ label, type = "text", placeholder="", id,
   return (
     <div>
       <label  htmlFor={id} className="text-white mb-1 block text-sm">{label}
-        {label}
       </label>
       <input
         type={type}

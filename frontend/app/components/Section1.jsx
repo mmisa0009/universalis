@@ -30,13 +30,15 @@ export default function Section1() {
 
             <div className="relative inline-block w-[80%]">
                     <Image src="/allMember.png" alt="all members" width={2000} height={2000} className="block w-full h-auto" />
-                    <button className="absolute top-0 right-[2vw] max-w-[12vw] bg-transparent border border-[#FFF8F0] rounded-[50px] text-[#FFF8F0] py-[0.8vw] px-[3.5vw] cursor-pointer text-[1.2vmax] hover:bg-[#FFF8F0] hover:text-[#001C3D]">
-                    Log In
-                    </button>
+                    <Link href="/LogIn">
+                        <button className="absolute top-0 right-[2vw] max-w-[12vw] bg-transparent border border-[#FFF8F0] rounded-[50px] text-[#FFF8F0] py-[0.8vw] px-[3.5vw] cursor-pointer text-[1.2vmax] hover:bg-[#FFF8F0] hover:text-[#001C3D]">
+                        Log In
+                        </button>
+                    </Link>
                     <h3 className="text-[1.8vw] mb-[1vw] relative left-[-20vw] bottom-[3vw]">
                     University College Maastricht Study Association
                     </h3>
-                </div>
+            </div>
 
             
         </div>
