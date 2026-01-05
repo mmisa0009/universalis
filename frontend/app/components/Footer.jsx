@@ -27,11 +27,6 @@ export default function Footer() {
                                     Privacy Policy
                                 </Link>
                             </li>
-                            <li className="pb-[1vw]">
-                                <Link href="#" className="no-underline text-[2vmin] text-[#001C3D]">
-                                    Contact Us
-                                </Link>
-                            </li>
                         </ul>
                     </div>
                 </div>

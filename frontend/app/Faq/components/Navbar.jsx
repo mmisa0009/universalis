@@ -15,7 +15,7 @@ export default function Navbar() {
                 onMouseLeave={() => setIsOpen(false)}
                 >
                     <button className="text-[#001c3d]  no-underline bg-none border-none p-[2vw] cursor-pointer overflow-visible text-[2.5vmin] hover:bg-[#001c3da1] hover:text-[#fff8f0] hover:rounded-[50px] hover:pt-[0.2em] hover:pb-[0.2em]">
-                        Home <i className="fa fa-caret-down"></i>
+                        Home <i className="fa fa-caret-down" href="/"></i>
                     </button>
                     {isOpen && (
                         <div className="absolute bg-[#001c3da1] min-w-[160px] top-full rounded-[25px] shadow-lg">
