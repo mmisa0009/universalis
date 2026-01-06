@@ -25,7 +25,7 @@ export default function Navbar() {
                             <Link href="#" className="block px-4 py-2 text-[#fff8f0a5] text-[2vmin] hover:underline">
                             Committees
                             </Link>
-                            <Link href="#" className="block px-4 py-2 text-[#fff8f0a5] text-[2vmin] hover:underline">
+                            <Link href="PreviousBoards" className="block px-4 py-2 text-[#fff8f0a5] text-[2vmin] hover:underline">
                             Previous Boards
                             </Link>
                         </div>
@@ -34,10 +34,10 @@ export default function Navbar() {
                 <Link href="https://shop.ucmsa.nl/" className="text-[#001C3D] p-[2vw] no-underline bg-none border-none cursor-pointer overflow-visible text-[2.5vmin] hover:bg-[#001c3da1] hover:text-[#FFF8F0] hover:rounded-[50px] hover:pt-[0.2em] hover:pb-[0.2em]">
                     Shop
                 </Link>
-                <Link href="#" className="text-[#001C3D] p-[2vw] no-underline bg-none border-none cursor-pointer overflow-visible text-[2.5vmin] hover:bg-[#001c3da1] hover:text-[#FFF8F0] hover:rounded-[50px] hover:pt-[0.2em] hover:pb-[0.2em]">
+                <Link href="Documents" className="text-[#001C3D] p-[2vw] no-underline bg-none border-none cursor-pointer overflow-visible text-[2.5vmin] hover:bg-[#001c3da1] hover:text-[#FFF8F0] hover:rounded-[50px] hover:pt-[0.2em] hover:pb-[0.2em]">
                     Documents
                 </Link>
-                <Link href="#" className="text-[#001C3D] p-[2vw] no-underline bg-none border-none cursor-pointer overflow-visible text-[2.5vmin] hover:bg-[#001c3da1] hover:text-[#FFF8F0] hover:rounded-[50px] hover:pt-[0.2em] hover:pb-[0.2em]">
+                <Link href="Faq" className="text-[#001C3D] p-[2vw] no-underline bg-none border-none cursor-pointer overflow-visible text-[2.5vmin] hover:bg-[#001c3da1] hover:text-[#FFF8F0] hover:rounded-[50px] hover:pt-[0.2em] hover:pb-[0.2em]">
                     FAQ
                 </Link>
             </nav>
