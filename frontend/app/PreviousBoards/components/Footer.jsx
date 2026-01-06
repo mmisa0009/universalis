@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function Footer() {
     return (
         <footer className="bg-[#FFF8F0] text-[#001C3D] overflow-hidden relative">
-            <div className="flex justify-center w-[70%] mx-auto items-center">
+            <div className="flex justify-center w-[75%] mx-auto items-center">
                 <div className='flex items-baseline justify-between w-full pt-10 mb-0'>
                     <div className="contact">
                         <h3 className="text-[2vmin]">Contact Us</h3>
