@@ -22,7 +22,7 @@ export default function Navbar() {
                             <Link href="/" className="block px-4 py-2 text-[#fff8f0a5] text-[2vmin] hover:underline">
                             Home
                             </Link>
-                            <Link href="#" className="block px-4 py-2 text-[#fff8f0a5] text-[2vmin] hover:underline">
+                            <Link href="Committees" className="block px-4 py-2 text-[#fff8f0a5] text-[2vmin] hover:underline">
                             Committees
                             </Link>
                             <Link href="PreviousBoards" className="block px-4 py-2 text-[#fff8f0a5] text-[2vmin] hover:underline">
