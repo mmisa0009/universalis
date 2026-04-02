@@ -144,7 +144,7 @@ function DocumentCard({ doc }: { doc: Document }) {
  
 function ArchivistCard() {
   return (
-    <article className="relative rounded-3xl overflow-hidden min-h-[300px] flex items-end p-8 bg-[#1c6b51]">
+    <article className="relative rounded-3xl overflow-hidden min-h-[300px] flex items-end p-8 bg-[rgba(255,255,255,0.5)]">
       {/* Background texture via gradient */}
       <div className="absolute inset-0 opacity-20 bg-gradient-to-br from-[#a6f2d1] via-transparent to-[#003a30]" />
       <div className="relative z-10">
@@ -309,9 +309,9 @@ export default function Documents() {
         {/* Load More */}
         <div className="mt-20 flex flex-col items-center">
           <div className="h-px w-24 bg-[#4c8577]/20 mb-8" />
-          <button className="group flex items-center gap-4 text-[#1c6b51] font-bold tracking-tight">
+          <button className="group flex items-center gap-4 text-[#FFF8F0] font-bold tracking-tight">
             <span className="text-sm">DISCOVER MORE DOCUMENTS</span>
-            <span className="w-12 h-12 bg-[#b3efde] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span className="w-12 h-12 bg-[rgba(255,255,255,0.5)] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
               <span className="material-symbols-outlined">arrow_downward</span>
             </span>
           </button>
