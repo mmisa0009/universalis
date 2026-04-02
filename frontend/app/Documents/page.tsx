@@ -2,15 +2,13 @@
 
 import { useState } from 'react';
 import Footer from "./components/Footer";
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import Navbar from "../components/Navbar";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
  
 type FileType = "pdf" | "docx" | "xlsx";
-type Category = "Official" | "Minutes" | "Finance" | "Academic" | "Templates";
+type Category = "Official" | "Minutes" | "Finance" | "Committees" | "Templates";
  
 interface Document {
   id: number;
@@ -28,7 +26,7 @@ interface Document {
 const documents: Document[] = [
   {
     id: 1,
-    title: "Student Association Bylaws 2024",
+    title: "Statutes Updated 2024 Version",
     description: "The fundamental governing document outlining association structure and protocols.",
     fileType: "pdf",
     category: "Official",
@@ -47,7 +45,7 @@ const documents: Document[] = [
   },
   {
     id: 3,
-    title: "Budget Allocation Q4",
+    title: "Budget Plan Spring 26",
     description: "Detailed breakdown of committee funds and upcoming event expenses.",
     fileType: "xlsx",
     category: "Finance",
@@ -56,10 +54,10 @@ const documents: Document[] = [
   },
   {
     id: 4,
-    title: "Academic Ethics Guide",
-    description: "Guidelines for student research and collaborative project integrity.",
+    title: "Policy Manual 2025 Oct Updated",
+    description: "Interpretations for States, not legally bindings.",
     fileType: "pdf",
-    category: "Academic",
+    category: "Official",
     date: "Aug 15, 2023",
     action: "View",
   },
@@ -101,23 +99,23 @@ function DocumentCard({ doc }: { doc: Document }) {
         <div className={`w-14 h-14 ${fi.bg} rounded-2xl flex items-center justify-center ${fi.text}`}>
           <span className="material-symbols-outlined text-3xl">{fi.icon}</span>
         </div>
-        <button className="text-[#4c8577] hover:text-[#865400] transition-colors">
+        <button className="text-[#001c3da1] hover:text-[#865400] transition-colors">
           <span className="material-symbols-outlined">more_vert</span>
         </button>
       </div>
  
       {/* Content */}
-      <h3 className="text-xl font-bold text-[#003a30] mb-2 group-hover:text-[#1c6b51] transition-colors font-['Manrope']">
+      <h3 className="text-xl font-bold text-[#001c3d] mb-2 group-hover:text-[#001c3da1] transition-colors font-['Manrope']">
         {doc.title}
       </h3>
-      <p className="text-[#2e695c] text-sm mb-6 font-['Plus_Jakarta_Sans']">{doc.description}</p>
+      <p className="text-[#001c3da1] text-sm mb-6 font-['Plus_Jakarta_Sans']">{doc.description}</p>
  
       {/* Tags */}
       <div className="flex flex-wrap gap-2 mb-6">
-        <span className="bg-[#d5fcf0] px-3 py-1 rounded-md text-[10px] font-bold text-[#2e695c] uppercase tracking-widest">
+        <span className="bg-[#f9e9d5] px-3 py-1 rounded-md text-[10px] font-bold text-[#001c3d] uppercase tracking-widest">
           {doc.category}
         </span>
-        <span className="bg-[#d5fcf0] px-3 py-1 rounded-md text-[10px] font-bold text-[#2e695c] uppercase tracking-widest">
+        <span className="bg-[#f9e9d5] px-3 py-1 rounded-md text-[10px] font-bold text-[#001c3d] uppercase tracking-widest">
           {doc.fileType.toUpperCase()}
         </span>
       </div>
@@ -125,12 +123,12 @@ function DocumentCard({ doc }: { doc: Document }) {
       {/* Footer row */}
       <div className="flex items-center justify-between pt-6 border-t border-[#d5fcf0]">
         <div className="flex items-center gap-2">
-          <span className="material-symbols-outlined text-[#4c8577] text-lg">calendar_today</span>
-          <span className="text-xs text-[#4c8577] font-medium">{doc.date}</span>
+          <span className="material-symbols-outlined text-[#001c3da1] text-lg">calendar_today</span>
+          <span className="text-xs text-[#001c3da1] font-medium">{doc.date}</span>
         </div>
         <a
           href="#"
-          className="text-[#865400] font-bold text-sm flex items-center gap-1 hover:underline"
+          className="text-[#001c3d] font-bold text-sm flex items-center gap-1 hover:underline"
         >
           {doc.action}
           <span className="material-symbols-outlined text-sm">
@@ -150,10 +148,10 @@ function ArchivistCard() {
       <div className="relative z-10">
         <h3 className="text-2xl font-bold text-white mb-2 font-['Manrope']">Can't find a file?</h3>
         <p className="text-white/80 text-sm mb-6 max-w-xs font-['Plus_Jakarta_Sans']">
-          Request archived documents from the curator's office or submit a ticket to the IT department.
+          Request archived documents to a secretary.
         </p>
         <button className="px-6 py-2 bg-[#4f3000] text-[#fea619] rounded-full text-sm font-bold border border-[#fea619]/30 hover:bg-[#6b4000] transition-colors">
-          Contact Archivist
+          Contact secretary
         </button>
       </div>
     </article>
@@ -203,8 +201,7 @@ export default function Documents() {
               Document Portal
             </h1>
             <p className="text-[#FFF8F0] text-lg leading-relaxed">
-              Access the curated repository of association bylaws, meeting minutes, and academic
-              resources. Every document is indexed for your administrative convenience.
+              The all UCMSA related documents (minutes, templates, budget plan) will be stored here. 
             </p>
           </div>
           <div className="mt-8 md:mt-0">
