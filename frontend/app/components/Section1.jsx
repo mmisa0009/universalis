@@ -2,45 +2,57 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Section1() {
-    return (
-        <div className='flex w-[96vw] max-h-[90vw] p-[2vw] gap-[2vw] relative'>
-            <div className='flex flex-col items-center justify-between gap-[15vw] w-[20%] relative '>
-                <div className='origin-bottom-right -rotate-90 translate-y-[-100%] mr-[-3.5vw] flex '>
-                    <h1 className='text-[6.3vw] leading-[9vw] font-bold whitespace-nowrap text-right p-0 pb-[8vw] w-fit h-fit'>
-                        UCMSA <br />Universalis
-                    </h1>
-                </div>
-
-                <div className="flex flex-col items-center bottom-[21%] gap-[1vw] relative">
-                    <div className="flex flex-row m-0 p-0 gap-2">
-                        <Link href="https://nl.linkedin.com/company/universalis">
-                        <Image src="/linkedin.png" alt="linkedin logo" width={100} height={100} className="w-[1.5vw]" />
-                        </Link>
-                        <Link href="https://www.instagram.com/ucmsa_universalis/?hl=en">
-                        <Image src="/instagram.png" alt="instagram logo" width={100} height={100} className="w-[1.5vw]" />
-                        </Link>
-                    </div>
-                    <p className="text-[1vmax] text-center">Follow Us On Media</p>
-                </div>
-
-                
-
-
+  return (
+    <header className="relative min-h-screen grid grid-cols-12 gap-0 overflow-hidden pt-20 px-8 pb-12 bg-[#001C3D]">
+      {/* Sidebar Spine */}
+        <div className="col-span-1 flex flex-col justify-between items-center py-12">
+            <h1
+            className="w-fit h-fit font-bold tracking-tighter text-[#FFF8F1] opacity-90 select-none whitespace-nowrap"
+            style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg) translateY(12%)', fontSize: 'clamp(2rem, 6vw, 5rem)', }}
+            >
+            UCMSA Universalis
+            </h1>
+            <div className="flex  gap-6 items-center">
+                <Link href="https://nl.linkedin.com/company/universalis">
+                    <Image src="/linkedin.png" alt="linkedin logo" width={100} height={100} className="w-[1.5vw]" />
+                </Link>
+                <Link href="https://www.instagram.com/ucmsa_universalis/?hl=en">
+                    <Image src="/instagram.png" alt="instagram logo" width={100} height={100} className="w-[1.5vw]" />
+                </Link>
             </div>
-
-            <div className="relative inline-block w-[80%]">
-                    <Image src="/allMember.png" alt="all members" width={2000} height={2000} className="block w-full h-auto" />
-                    <Link href="/LogIn">
-                        <button className="absolute top-0 right-[2vw] max-w-[12vw] bg-transparent border border-[#FFF8F0] rounded-[50px] text-[#FFF8F0] py-[0.8vw] px-[3.5vw] cursor-pointer text-[1.2vmax] hover:bg-[#FFF8F0] hover:text-[#001C3D]">
-                        Log In
-                        </button>
-                    </Link>
-                    <h3 className="text-[1.8vw] mb-[1vw] relative left-[-20vw] bottom-[3vw]">
-                    University College Maastricht Study Association
-                    </h3>
-            </div>
-
-            
         </div>
-    );
+
+      {/* Main Content */}
+      <div className="col-span-11 relative aspect-[16/9] rounded-xl overflow-hidden shadow-2xl">
+        <Image
+          src="allMember.png"
+          alt="Universalis Member Photo"
+          fill
+          className="object-cover"
+          unoptimized
+        />
+
+        {/* Floating Log In */}
+        <div className="absolute top-3 right-8">
+          <Link href="/LogIn">
+              <button className="bg-white/60 backdrop-blur-md px-6 py-2.5 rounded-full text-[#001C3D] hover:bg-white transition-all shadow-lg text-sm">
+                Log In
+              </button>
+          </Link>
+        </div>
+
+        {/* Hero Text */}
+        <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end">
+          <div className="bg-[#001C3D]/90 backdrop-blur-md p-8 rounded-xl max-w-xl">
+            <p className="font-['Newsreader'] text-[4.0vh] text-white italic mb-2 leading-tight">
+              Enjoy the social and academic activities supported by Universalis.
+            </p>
+            <p className="text-white/80 uppercase tracking-widest text-xs">
+              University College Maastricht Study Association
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 }
