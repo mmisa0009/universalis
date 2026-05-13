@@ -213,7 +213,7 @@ export default function Documents() {
         </header>
  
         {/* Search & Filter Bar */}
-        <section className="mb-12 sticky top-4 z-40">
+        <section className="mb-12 sticky top-[4.25rem] md:top-[calc(2vw+3rem)] z-40">
           <div className="bg-[rgba(255,255,255,0.5)] backdrop-blur-md p-6 rounded-3xl shadow-sm space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Search */}

@@ -25,16 +25,18 @@ export default function Navbar() {
                         </svg>
                     </button>
  
-                    <div className={`absolute top-[calc(100%+6px)] left-0 min-w-[170px] bg-[#001C3D]/90 backdrop-blur-md rounded-2xl shadow-[0_8px_32px_rgba(0,28,61,0.18)] border border-white/10 overflow-hidden transition-all duration-200 ${dropdownOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-1 pointer-events-none'}`}>
-                        <Link href="/" className="block px-4 py-2.5 text-[#FFF8F0]/70 text-[2.0vh] hover:text-[#FFF8F0] hover:bg-white/10 transition-colors duration-150">
-                            Home
-                        </Link>
-                        <Link href="/Committees" className="block px-4 py-2.5 text-[#FFF8F0]/70 text-[2.0vh] hover:text-[#FFF8F0] hover:bg-white/10 transition-colors duration-150">
-                            Committees
-                        </Link>
-                        <Link href="/PreviousBoards" className="block px-4 py-2.5 text-[#FFF8F0]/70 text-[2.0vh] hover:text-[#FFF8F0] hover:bg-white/10 transition-colors duration-150">
-                            Previous Boards
-                        </Link>
+                    <div className={`absolute top-full left-0 pt-1.5 transition-all duration-200 ${dropdownOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-1 pointer-events-none'}`}>
+                        <div className="min-w-[170px] bg-[#001C3D]/90 backdrop-blur-md rounded-2xl shadow-[0_8px_32px_rgba(0,28,61,0.18)] border border-white/10 overflow-hidden">
+                            <Link href="/" className="block px-4 py-2.5 text-[#FFF8F0]/70 text-[2.0vh] hover:text-[#FFF8F0] hover:bg-white/10 transition-colors duration-150">
+                                Home
+                            </Link>
+                            <Link href="/Committees" className="block px-4 py-2.5 text-[#FFF8F0]/70 text-[2.0vh] hover:text-[#FFF8F0] hover:bg-white/10 transition-colors duration-150">
+                                Committees
+                            </Link>
+                            <Link href="/PreviousBoards" className="block px-4 py-2.5 text-[#FFF8F0]/70 text-[2.0vh] hover:text-[#FFF8F0] hover:bg-white/10 transition-colors duration-150">
+                                Previous Boards
+                            </Link>
+                        </div>
                     </div>
                 </div>
  

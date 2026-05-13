@@ -50,10 +50,10 @@ export default function Section2() {
     };
 
     return (
-    <section className="py-24 px-8 bg-[#f9f3eb]">
-        <div className="flex justify-between items-end mb-12">
+    <section className="py-12 px-4 sm:py-24 sm:px-8 bg-[#f9f3eb]">
+        <div className="flex justify-between items-end mb-8 sm:mb-12">
             <div>
-                <h2 className="font-['Newsreader'] text-5xl font-bold text-[#001C3D]">Announcements</h2>
+                <h2 className="font-['Newsreader'] text-3xl sm:text-5xl font-bold text-[#001C3D]">Announcements</h2>
                 <div className="h-1 w-24 bg-[#001C3D] mt-4"></div>
             </div>
             <div className="flex gap-4">
@@ -80,9 +80,9 @@ export default function Section2() {
             </div>
         </div>
 
-        <div ref={sliderRef} className="flex gap-8 overflow-x-auto pb-8 scroll-smooth" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div ref={sliderRef} className="flex gap-6 overflow-x-auto pb-8 scroll-smooth snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {announcements.map((item, i) => (
-                <div key={i} className="flex-shrink-0 w-80 bg-white rounded-xl overflow-hidden shadow-sm group">
+                <div key={i} className="snap-start flex-shrink-0 w-full sm:w-80 bg-white rounded-xl overflow-hidden shadow-sm group">
                     <div className="h-48 overflow-hidden relative">
                         <Image
                             src={item.img}
