@@ -10,7 +10,7 @@ export default function Navbar() {
     return (
         <>
             {/* Desktop nav */}
-            <nav className="fixed top-[2.0vw] left-1/2 -translate-x-1/2 z-50 h-10 hidden md:flex items-center justify-between px-2 rounded-full bg-white/60 backdrop-blur-md shadow-[0_4px_24px_rgba(0,28,61,0.08)] border border-white/40 w-[53vw]">
+            <nav className="fixed top-[2.0vw] left-1/2 -translate-x-1/2 z-50 h-10 hidden lg:flex items-center justify-between px-2 rounded-full bg-white/60 backdrop-blur-md shadow-[0_4px_24px_rgba(0,28,61,0.08)] border border-white/40 w-[53vw]">
  
                 {/* Home dropdown */}
                 <div
@@ -61,7 +61,7 @@ export default function Navbar() {
             </nav>
  
             {/* Mobile nav */}
-            <div className="md:hidden fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90vw]">
+            <div className="lg:hidden fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90vw]">
                 {/* Mobile pill bar */}
                 <div className="flex items-center justify-between px-5 h-11 rounded-full bg-white/70 backdrop-blur-md shadow-[0_4px_24px_rgba(0,28,61,0.10)] border border-white/40">
                     <span className="text-[#001C3D] font-medium text-sm tracking-tight">Menu</span>

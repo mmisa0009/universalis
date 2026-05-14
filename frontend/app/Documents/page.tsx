@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Footer from "./components/Footer";
 import React from "react";
 import Navbar from "../components/Navbar";
@@ -165,6 +165,13 @@ export default function Documents() {
   const [fileFilter, setFileFilter] = useState("All File Types");
   const [catFilter, setCatFilter] = useState("All Categories");
   const [activeTag, setActiveTag] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
  
   const filtered = documents.filter((d) => {
     const matchSearch =
@@ -214,8 +221,8 @@ export default function Documents() {
  
         {/* Search & Filter Bar */}
         <section className="mb-12 sticky top-[4.25rem] md:top-[calc(2vw+3rem)] z-40">
-          <div className="bg-[rgba(255,255,255,0.5)] backdrop-blur-md p-6 rounded-3xl shadow-sm space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className={`bg-[rgba(255,255,255,0.5)] backdrop-blur-md rounded-3xl shadow-sm transition-all duration-300 ${isScrolled ? "p-3 space-y-2" : "p-4 sm:p-6 space-y-4 sm:space-y-6"}`}>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
               {/* Search */}
               <div className="lg:col-span-6 relative">
                 <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#001c3da1]">
@@ -224,8 +231,8 @@ export default function Documents() {
                 <input
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 bg-white border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#001c3da1]/20 placeholder:text-[#001c3da1] text-[#001c3da1]"
-                  placeholder="Search by document name or content keywords..."
+                  className={`w-full pl-12 pr-4 bg-white border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#001c3da1]/20 placeholder:text-[#001c3da1] text-[#001c3da1] transition-all duration-300 ${isScrolled ? "py-2 text-sm" : "py-3 sm:py-4"}`}
+                  placeholder="Search documents..."
                   type="text"
                 />
               </div>
@@ -235,7 +242,7 @@ export default function Documents() {
                 <select
                   value={fileFilter}
                   onChange={(e) => setFileFilter(e.target.value)}
-                  className="w-full px-4 py-4 bg-white border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1c6b51]/20 text-[#2e695c] appearance-none"
+                  className={`w-full px-4 bg-white border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1c6b51]/20 text-[#2e695c] appearance-none transition-all duration-300 ${isScrolled ? "py-2 text-sm" : "py-3 sm:py-4"}`}
                 >
                   <option>All File Types</option>
                   <option>PDF Documents</option>
@@ -249,7 +256,7 @@ export default function Documents() {
                 <select
                   value={catFilter}
                   onChange={(e) => setCatFilter(e.target.value)}
-                  className="w-full px-4 py-4 bg-white border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1c6b51]/20 text-[#2e695c] appearance-none"
+                  className={`w-full px-4 bg-white border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1c6b51]/20 text-[#2e695c] appearance-none transition-all duration-300 ${isScrolled ? "py-2 text-sm" : "py-3 sm:py-4"}`}
                 >
                   <option>All Categories</option>
                   <option>Bylaws</option>
@@ -263,7 +270,7 @@ export default function Documents() {
               <div className="lg:col-span-2 flex gap-2">
                 <button
                   onClick={() => { setSearch(""); setFileFilter("All File Types"); setCatFilter("All Categories"); setActiveTag(null); }}
-                  className="flex-1 bg-[#001c3da1] text-[#FFF8F0] font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-colors hover:bg-[#1c6b51]/10"
+                  className={`flex-1 bg-[#001c3da1] text-[#FFF8F0] font-bold rounded-xl flex items-center justify-center gap-2 transition-all duration-300 hover:bg-[#1c6b51]/10 ${isScrolled ? "py-2 text-sm" : "py-3 sm:py-4"}`}
                 >
                   <span className="material-symbols-outlined">filter_list</span>
                   Reset
@@ -272,7 +279,7 @@ export default function Documents() {
             </div>
  
             {/* Popular Tags */}
-            <div className="flex flex-wrap gap-2 items-center">
+            <div className={`flex flex-wrap gap-2 items-center transition-all duration-300 overflow-hidden ${isScrolled ? "max-h-0 opacity-0 pointer-events-none" : "max-h-20 opacity-100"}`}>
               <span className="text-xs font-bold uppercase tracking-wider text-[#FFF8F0] px-2">
                 Popular Tags:
               </span>
