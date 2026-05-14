@@ -164,7 +164,7 @@ export default function Section4() {
         <div className="bg-[#FFF8F0] text-[#001C3D] w-full min-h-screen relative overflow-hidden">
 
             {/* title — behind the slider, anchored to the bottom */}
-            <h2 className="absolute bottom-0 left-8 text-[12vw] font-extrabold tracking-tighter leading-[0.88] whitespace-nowrap text-[#001c3d] select-none pointer-events-none z-0">
+            <h2 className="absolute bottom-0 left-8 text-[12vw] font-extrabold tracking-tighter leading-[0.88] whitespace-nowrap text-[#001c3d] select-none pointer-events-none z-0 pb-6">
                 Meet Our Team
             </h2>
 
