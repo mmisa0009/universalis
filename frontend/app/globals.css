@@ -22,42 +22,6 @@ p {
   position: relative !important;
 }
 
-@keyframes scroll-right {
-  0% {transform: translate(100vw);}
-  100% {transform: translate(-100vw);}
-}
-
-@keyframes scroll-left {
-  0% {transform: translate(-100vw);}
-  100% {transform: translate(100vw);}
-}
 
 
-
-.member-slider.ab .member {
-  animation: scroll-left 7s linear infinite;
-  animation-play-state: paused;
-}
-.member-slider.eb .member {
-  animation: scroll-left 6s linear infinite;
-  animation-play-state: paused;
-}
-.member-slider.sb .member {
-    animation: scroll-right 5.5s linear infinite;
-    animation-play-state: paused;
-}
-
-.member-slider.animate.ab .member,
-.member-slider.animate.eb .member,
-.member-slider.animate.sb .member {
-  animation-play-state: running;
-}
-
-
-.section3-bg {
-    background-image: url(/ucm-building.png); 
-    background-size: 100vw;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
 

@@ -12,12 +12,7 @@ export default function HomePage() {
             <Navbar />
              
             <div id="section1">
-                
                 <Section1 />
-            </div>
-            
-            <div className='block mx-auto text-right text-[2.5vw]  p-4 pt-0 mr-[4vw]'>
-                <h2>Enjoy the social and academic activities supported by Universalis.</h2>
             </div>
             
             <Section2 />
