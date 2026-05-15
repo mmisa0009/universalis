@@ -5,11 +5,9 @@ import Footer from "./components/Footer";
 import React from "react";
 import Navbar from "../components/Navbar";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
- 
 type FileType = "pdf" | "docx" | "xlsx";
 type Category = "Official" | "Minutes" | "Finance" | "Committees" | "Templates";
- 
+
 interface Document {
   id: number;
   title: string;
@@ -18,11 +16,10 @@ interface Document {
   category: Category;
   date: string;
   action: "View" | "Download";
-  accent?: boolean; // left-border accent
+  accent?: boolean;
 }
- 
-// ─── Data ─────────────────────────────────────────────────────────────────────
- 
+
+
 const documents: Document[] = [
   {
     id: 1,
@@ -71,28 +68,23 @@ const documents: Document[] = [
     action: "Download",
   },
 ];
- 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
- 
+
+
 const fileIcons: Record<FileType, { icon: string; bg: string; text: string }> = {
-  pdf:  { icon: "picture_as_pdf", bg: "bg-[#a6f2d1]",  text: "text-[#1c6b51]" },
-  docx: { icon: "description",    bg: "bg-[#fea619]/20", text: "text-[#865400]" },
-  xlsx: { icon: "table_chart",    bg: "bg-[#dce1ff]",  text: "text-[#415aab]" },
+  pdf:  { icon: "picture_as_pdf", bg: "bg-red-100",   text: "text-red-600"   },
+  docx: { icon: "description",    bg: "bg-blue-100",  text: "text-blue-600"  },
+  xlsx: { icon: "table_chart",    bg: "bg-green-100", text: "text-green-600" },
 };
  
 const tags = ["2024 Semester", "Official", "Templates", "Archive"];
- 
-// ─── Sub-components ───────────────────────────────────────────────────────────
- 
+
+
 function DocumentCard({ doc }: { doc: Document }) {
   const fi = fileIcons[doc.fileType];
  
   return (
     <article
-      className={[
-        "bg-white p-6 rounded-3xl hover:-translate-y-1 transition-all duration-300 group",
-        doc.accent ? "border-l-4 border-[#865400]" : "",
-      ].join(" ")}
+      className="bg-white p-6 rounded-3xl hover:-translate-y-1 transition-all duration-300 group"
     >
       {/* Icon row */}
       <div className="flex justify-between items-start mb-6">
@@ -105,10 +97,10 @@ function DocumentCard({ doc }: { doc: Document }) {
       </div>
  
       {/* Content */}
-      <h3 className="text-xl font-bold text-[#001c3d] mb-2 group-hover:text-[#001c3da1] transition-colors font-['Manrope']">
+      <h3 className="text-xl font-bold text-[#001c3d] mb-2 group-hover:text-[#001c3da1] transition-colors font-['Newsreader']">
         {doc.title}
       </h3>
-      <p className="text-[#001c3da1] text-sm mb-6 font-['Plus_Jakarta_Sans']">{doc.description}</p>
+      <p className="text-[#001c3da1] text-sm mb-6">{doc.description}</p>
  
       {/* Tags */}
       <div className="flex flex-wrap gap-2 mb-6">
@@ -146,8 +138,8 @@ function ArchivistCard() {
       {/* Background texture via gradient */}
       <div className="absolute inset-0 opacity-20 bg-gradient-to-br from-[#a6f2d1] via-transparent to-[#003a30]" />
       <div className="relative z-10">
-        <h3 className="text-2xl font-bold text-white mb-2 font-['Manrope']">Can't find a file?</h3>
-        <p className="text-white/80 text-sm mb-6 max-w-xs font-['Plus_Jakarta_Sans']">
+        <h3 className="text-2xl font-bold text-white mb-2 font-['Newsreader']">Can&apos;t find a file?</h3>
+        <p className="text-white/80 text-sm mb-6 max-w-xs">
           Request archived documents to a secretary.
         </p>
         <button className="px-6 py-2 bg-[#4f3000] text-[#fea619] rounded-full text-sm font-bold border border-[#fea619]/30 hover:bg-[#6b4000] transition-colors">
@@ -194,7 +186,7 @@ export default function Documents() {
   });
  
   return (
-    <main className="bg-[#001c3da1] min-h-screen font-['Plus_Jakarta_Sans']">
+    <main className="bg-[#001c3da1] min-h-screen">
       {/* ── Navbar ── */}
       <Navbar />
  
@@ -204,9 +196,9 @@ export default function Documents() {
         {/* Header */}
         <header className="mb-16 md:flex items-end justify-between">
           <div className="max-w-2xl">
-            <h1 className="text-5xl md:text-6xl font-extrabold tracking-tighter text-[#FFF8F0] mb-6 font-['Manrope']">
+            <h4 className="text-5xl md:text-6xl text-[#FFF8F0] mb-6 font-sans font-bold">
               Document Portal
-            </h1>
+            </h4>
             <p className="text-[#FFF8F0] text-lg leading-relaxed">
               The all UCMSA related documents (minutes, templates, budget plan) will be stored here. 
             </p>
@@ -329,7 +321,7 @@ export default function Documents() {
       {/* eslint-disable-next-line @next/next/no-page-custom-font */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap');
         .material-symbols-outlined {
           font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }

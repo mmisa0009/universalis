@@ -4,33 +4,42 @@ import Link from 'next/link';
 export default function Footer() {
     return (
         <footer className="bg-[#FFF8F0] text-[#001C3D] overflow-hidden relative">
-            <div className="flex  w-[70%] mx-auto ">
-                <div className='flex flex-col xl:flex-row justify-between items-center xl:items-start w-full pt-[2vw] mb-0'>
-                    <div className="pages text-center xl:text-left">
-                        <ul className="list-none mx-auto xl:mx-0">
-                            <li className="pb-[1vw]">
-                                <Link href="/" className="no-underline text-[2vmin] text-[#001C3D]">
+            <div className="w-[70%] mx-auto border-t border-[#001C3D]/20 pt-10">
+                <div className='grid grid-cols-1 md:grid-cols-2 w-full mb-0 gap-8 md:gap-32'>
+                    <div className="pages text-center md:text-left">
+                        <h3 className="text-sm font-semibold uppercase tracking-widest mb-3 opacity-50">Pages</h3>
+                        <ul className="list-none space-y-2">
+                            <li>
+                                <Link href="/" className="text-sm text-[#001C3D] hover:opacity-70 transition-opacity">
                                     Home
                                 </Link>
                             </li>
-                            <li className="pb-[1vw]">
-                                <Link href="#" className="no-underline text-[2vmin] text-[#001C3D]">
+                            <li>
+                                <Link href="#" className="text-sm text-[#001C3D] hover:opacity-70 transition-opacity">
                                     Privacy Policy
-                                </Link>
-                            </li>
-                            <li className="pb-[1vw] xl:hidden">
-                                <Link href="#" className="no-underline text-[2vmin] text-[#001C3D]">
-                                    Contact Us
                                 </Link>
                             </li>
                         </ul>
                     </div>
-                    <div className="contact hidden xl:flex xl:flex-col">
-                        <h3 className="text-[2vmin]">Contact Us</h3>
-                        <div className="pt-[0.5vw] flex gap-2">
-                            <Image src="/email.png" alt="email icon" width={25} height={25} className="w-[1.6vw]" />
-                            <a className="underline text-[1.8vmin]" href="mailto:ucmsa-secretary@maastrichtuniversity.nl">
-                            ucmsa-secretary@maastrichtuniversity.nl
+                    <div className="contact text-center md:text-left">
+                        <h3 className="text-sm font-semibold uppercase tracking-widest mb-3 opacity-50">Contact Us</h3>
+                        <div className="flex gap-3 items-center justify-center md:justify-start">
+                            <a href="mailto:ucmsa-secretary@maastrichtuniversity.nl" aria-label="Email us" className="opacity-70 hover:opacity-100 transition-opacity">
+                                <Image src="/email.png" alt="email icon" width={18} height={18} className="w-[18px] h-[18px]" />
+                            </a>
+                            <a href="#" aria-label="Instagram" className="opacity-70 hover:opacity-100 transition-opacity">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                    <circle cx="12" cy="12" r="4"/>
+                                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="LinkedIn" className="opacity-70 hover:opacity-100 transition-opacity">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                    <rect x="2" y="9" width="4" height="12"/>
+                                    <circle cx="4" cy="4" r="2"/>
+                                </svg>
                             </a>
                         </div>
                     </div>

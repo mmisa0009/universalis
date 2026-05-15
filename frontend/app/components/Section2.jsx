@@ -40,6 +40,9 @@ const announcements = [
 
 export default function Section2() {
     const sliderRef = useRef(null);
+    const isDragging = useRef(false);
+    const dragStartX = useRef(0);
+    const dragScrollLeft = useRef(0);
 
     const scrollLeft = () => {
         sliderRef.current?.scrollBy({ left: -300, behavior: 'smooth' });
@@ -47,6 +50,25 @@ export default function Section2() {
 
     const scrollRight = () => {
         sliderRef.current?.scrollBy({ left: 300, behavior: 'smooth' });
+    };
+
+    const handleMouseDown = (e) => {
+        isDragging.current = true;
+        dragStartX.current = e.pageX - sliderRef.current.offsetLeft;
+        dragScrollLeft.current = sliderRef.current.scrollLeft;
+        sliderRef.current.style.cursor = 'grabbing';
+    };
+
+    const handleMouseMove = (e) => {
+        if (!isDragging.current) return;
+        e.preventDefault();
+        const x = e.pageX - sliderRef.current.offsetLeft;
+        sliderRef.current.scrollLeft = dragScrollLeft.current - (x - dragStartX.current);
+    };
+
+    const handleMouseEnd = () => {
+        isDragging.current = false;
+        sliderRef.current.style.cursor = 'grab';
     };
 
     return (
@@ -80,7 +102,15 @@ export default function Section2() {
             </div>
         </div>
 
-        <div ref={sliderRef} className="flex gap-6 overflow-x-auto pb-8 scroll-smooth snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div
+            ref={sliderRef}
+            className="flex gap-6 overflow-x-auto pb-8 scroll-smooth snap-x snap-mandatory cursor-grab select-none"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseEnd}
+            onMouseLeave={handleMouseEnd}
+        >
             {announcements.map((item, i) => (
                 <div key={i} className="snap-start flex-shrink-0 w-full sm:w-80 bg-white rounded-xl overflow-hidden shadow-sm group">
                     <div className="h-48 overflow-hidden relative">

@@ -1,12 +1,14 @@
 export default function Section3() {
     return (
-        <div className="relative text-[#001c3d] overflow-hidden">
-            <img
-                src="/ucm-building.png"
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
-            />
+        <div
+            className="relative text-[#001c3d]"
+            style={{
+                backgroundImage: "url('/ucm-building.png')",
+                backgroundAttachment: "fixed",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+            }}
+        >
             <div className="relative z-10 flex flex-col items-center justify-center gap-2 h-screen opacity-100 text-center transform translate-y-0 transition-opacity duration-800 ease-in-out transform-gpu pb-4">
                 <h2 className="text-[6vmin] font-bold">Who Are We?</h2>
                 <p className="text-lg max-w-[1000px] p-4">
