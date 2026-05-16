@@ -72,29 +72,31 @@ export default function Section2() {
     };
 
     return (
-    <section className="py-12 px-4 sm:py-24 sm:px-8 bg-[#f9f3eb]">
+    <section className="h-full flex flex-col pt-20 pb-10 px-4 sm:pt-24 sm:pb-14 sm:px-8 bg-[#f9f3eb]">
         <div className="flex justify-between items-end mb-8 sm:mb-12">
             <div>
                 <h2 className="font-['Newsreader'] text-3xl sm:text-5xl font-bold text-[#001C3D]">Announcements</h2>
                 <div className="h-1 w-24 bg-[#001C3D] mt-4"></div>
             </div>
             <div className="flex gap-4">
-                <button onClick={scrollLeft} className="group w-12 h-12 rounded-full border border-[#74777f] flex items-center justify-center hover:bg-[#001C3D] hover:text-white transition-all">
-                    <div className="relative w-5 h-5">
+                <button onClick={scrollLeft} className="group w-12 h-12 rounded-full border border-[#74777f] flex items-center justify-center hover:bg-[#001C3D] hover:border-[#001C3D] hover:shadow-lg transition-all duration-300">
+                    <div className="relative w-6 h-6">
                         <Image
                             src="/arrow.png"
                             alt="arrow left"
                             fill
+                            quality={100}
                             className="object-contain scale-x-[-1] group-hover:invert"
                         />
                     </div>
                 </button>
-                <button onClick={scrollRight} className="group w-12 h-12 rounded-full border border-[#74777f] flex items-center justify-center hover:bg-[#001C3D] hover:text-white transition-all">
-                    <div className="relative w-5 h-5">
+                <button onClick={scrollRight} className="group w-12 h-12 rounded-full border border-[#74777f] flex items-center justify-center hover:bg-[#001C3D] hover:border-[#001C3D] hover:shadow-lg transition-all duration-300">
+                    <div className="relative w-6 h-6">
                         <Image
                             src="/arrow.png"
                             alt="arrow right"
                             fill
+                            quality={100}
                             className="object-contain group-hover:invert"
                         />
                     </div>
@@ -112,8 +114,8 @@ export default function Section2() {
             onMouseLeave={handleMouseEnd}
         >
             {announcements.map((item, i) => (
-                <div key={i} className="snap-start flex-shrink-0 w-full sm:w-80 bg-white rounded-xl overflow-hidden shadow-sm group">
-                    <div className="h-48 overflow-hidden relative">
+                <div key={i} className="snap-start flex-shrink-0 w-full sm:w-80 bg-white rounded-2xl overflow-hidden shadow-md group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
+                    <div className="h-52 overflow-hidden relative">
                         <Image
                             src={item.img}
                             alt={item.title}
@@ -121,24 +123,27 @@ export default function Section2() {
                             className="object-cover group-hover:scale-105 transition-transform duration-500"
                             unoptimized
                         />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                        <span className={`absolute top-3 left-3 ${item.tagColor} px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm`}>
+                            {item.tag}
+                        </span>
                     </div>
                     <div className="p-6">
-                        <div className="flex gap-2 mb-3">
-                            <span className={`${item.tagColor} px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter`}>
-                            {item.tag}
-                            </span>
-                        </div>
-                        <h3 className="font-['Newsreader'] text-xl font-bold mb-4 text-[#001C3D]">{item.title}</h3>
-                        <div className="space-y-2 text-[#44474e] text-sm">
+                        <h3 className="font-['Newsreader'] text-xl font-bold mb-4 text-[#001C3D] leading-snug">{item.title}</h3>
+                        <div className="space-y-2 text-sm">
                             <div className="flex items-center gap-2">
-                                <span className="material-symbols-outlined text-sm">schedule</span>
+                                <span className="material-symbols-outlined text-sm text-[#74777f]">schedule</span>
                                 <span className='text-[#001C3D]'>{item.time}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <span className="material-symbols-outlined text-sm">location_on</span>
+                                <span className="material-symbols-outlined text-sm text-[#74777f]">location_on</span>
                                 <span className='text-[#001C3D]'>{item.location}</span>
                             </div>
                         </div>
+                    </div>
+                    <div className="mx-6 mb-5 flex items-center gap-1 text-xs font-semibold text-[#001C3D]/40 group-hover:text-[#001C3D]/70 transition-colors duration-300 tracking-wide uppercase">
+                        <span>View details</span>
+                        <span className="material-symbols-outlined text-sm">arrow_forward</span>
                     </div>
                 </div>
             ))}
