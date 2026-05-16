@@ -97,7 +97,7 @@ function DocumentCard({ doc }: { doc: Document }) {
       </div>
  
       {/* Content */}
-      <h3 className="text-xl font-bold text-[#001c3d] mb-2 group-hover:text-[#001c3da1] transition-colors font-['Newsreader']">
+      <h3 className="text-xl font-bold text-[#001c3d] mb-2 group-hover:text-[#001c3da1] transition-colors">
         {doc.title}
       </h3>
       <p className="text-[#001c3da1] text-sm mb-6">{doc.description}</p>
@@ -138,7 +138,7 @@ function ArchivistCard() {
       {/* Background texture via gradient */}
       <div className="absolute inset-0 opacity-20 bg-gradient-to-br from-[#a6f2d1] via-transparent to-[#003a30]" />
       <div className="relative z-10">
-        <h3 className="text-2xl font-bold text-white mb-2 font-['Newsreader']">Can&apos;t find a file?</h3>
+        <h3 className="text-2xl font-bold text-white mb-2">Can&apos;t find a file?</h3>
         <p className="text-white/80 text-sm mb-6 max-w-xs">
           Request archived documents to a secretary.
         </p>
@@ -196,7 +196,7 @@ export default function Documents() {
         {/* Header */}
         <header className="mb-16 md:flex items-end justify-between">
           <div className="max-w-2xl">
-            <h4 className="text-5xl md:text-6xl text-[#FFF8F0] mb-6 font-sans font-bold">
+            <h4 className="text-5xl md:text-6xl text-[#FFF8F0] mb-6 font-bold">
               Document Portal
             </h4>
             <p className="text-[#FFF8F0] text-lg leading-relaxed">
@@ -317,15 +317,6 @@ export default function Documents() {
       {/* ── Footer ── */}
       <Footer />
  
-      {/* Material Symbols font */}
-      {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
-        @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap');
-        .material-symbols-outlined {
-          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-      `}</style>
     </main>
   );
 }

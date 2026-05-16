@@ -12,17 +12,13 @@ const BOARD_META = {
 
 // 2 members from each board per row
 const byBoard = (board) => members.filter((m) => m.board === board);
-const eb = byBoard('EB');
-const sb = byBoard('SB');
-const ab = byBoard('AB');
-const row1 = [eb[0], eb[1], sb[0], sb[1], ab[0], ab[1]];
-const row2 = [eb[2], eb[3], sb[2], sb[3], ab[2], ab[3]];
+const allMembers = [...byBoard('EB'), ...byBoard('SB'), ...byBoard('AB')];
 
 function MemberCard({ member }) {
     const meta = BOARD_META[member.board];
     return (
-        <div className="flex-shrink-0 w-[190px] rounded-[16px] overflow-hidden bg-white/30 backdrop-blur-md border border-white/50 shadow-[10px_14px_28px_rgba(0,28,61,0.15)] select-none">
-            <div className="relative aspect-[4/3] w-full bg-[#f0ece6]">
+        <div className="flex-shrink-0 w-[200px] rounded-[16px] overflow-hidden bg-white/30 backdrop-blur-md border border-white/50 shadow-[10px_14px_28px_rgba(0,28,61,0.15)] select-none">
+            <div className="relative aspect-[3/4] w-full bg-[#f0ece6]">
                 <Image
                     src={member.img}
                     alt={member.name}
@@ -185,7 +181,7 @@ export default function Section4() {
             </h2>
 
             <div className="relative z-10 flex flex-col min-h-screen">
-                <div className="flex-1 max-h-20" />
+                <div className="flex-1" />
 
                 {/* Legend + drag hint */}
                 <div className="flex items-center gap-4 pl-8 pb-2 select-none">
@@ -202,15 +198,9 @@ export default function Section4() {
                     </span>
                 </div>
 
-                {/* Row 1 — slides left */}
-                <SliderRow items={row1} direction="left" />
+                <SliderRow items={allMembers} direction="left" />
 
-                <div className="h-5" />
-
-                {/* Row 2 — slides right */}
-                <SliderRow items={row2} direction="right" />
-
-                <div className="h-10" />
+                <div className="flex-1 min-h-[15vw]" />
             </div>
         </div>
     );

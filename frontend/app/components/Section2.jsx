@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRef } from 'react';
 
 const announcements = [
@@ -75,7 +76,7 @@ export default function Section2() {
     <section className="h-full flex flex-col pt-20 pb-10 px-4 sm:pt-24 sm:pb-14 sm:px-8 bg-[#f9f3eb]">
         <div className="flex justify-between items-end mb-8 sm:mb-12">
             <div>
-                <h2 className="font-['Newsreader'] text-3xl sm:text-5xl font-bold text-[#001C3D]">Announcements</h2>
+                <h2 className="text-3xl sm:text-5xl font-bold text-[#001C3D]">Announcements</h2>
                 <div className="h-1 w-24 bg-[#001C3D] mt-4"></div>
             </div>
             <div className="flex gap-4">
@@ -106,7 +107,7 @@ export default function Section2() {
 
         <div
             ref={sliderRef}
-            className="flex gap-6 overflow-x-auto pb-8 scroll-smooth snap-x snap-mandatory cursor-grab select-none"
+            className="flex gap-6 overflow-x-auto pt-4 -mt-4 pb-16 -mb-16 scroll-smooth snap-x snap-mandatory cursor-grab select-none"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
@@ -129,22 +130,24 @@ export default function Section2() {
                         </span>
                     </div>
                     <div className="p-6">
-                        <h3 className="font-['Newsreader'] text-xl font-bold mb-4 text-[#001C3D] leading-snug">{item.title}</h3>
-                        <div className="space-y-2 text-sm">
+                        <h3 className="text-xl font-bold mb-4 text-[#001C3D] leading-snug">{item.title}</h3>
+                        <div className="space-y-2 text-sm font-[family-name:var(--font-inter)]">
                             <div className="flex items-center gap-2">
-                                <span className="material-symbols-outlined text-sm text-[#74777f]">schedule</span>
+                                <span className="material-symbols-outlined text-sm text-[#001C3D]/50" style={{ fontVariationSettings: "'FILL' 1" }}>schedule</span>
                                 <span className='text-[#001C3D]'>{item.time}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <span className="material-symbols-outlined text-sm text-[#74777f]">location_on</span>
+                                <span className="material-symbols-outlined text-sm text-[#001C3D]/50" style={{ fontVariationSettings: "'FILL' 1" }}>location_on</span>
                                 <span className='text-[#001C3D]'>{item.location}</span>
                             </div>
                         </div>
                     </div>
-                    <div className="mx-6 mb-5 flex items-center gap-1 text-xs font-semibold text-[#001C3D]/40 group-hover:text-[#001C3D]/70 transition-colors duration-300 tracking-wide uppercase">
-                        <span>View details</span>
-                        <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                    </div>
+                    {item.tag === 'Academic' && (
+                        <Link href="/Documents" className="mx-6 mb-5 flex items-center gap-1 text-xs font-semibold text-[#001C3D]/40 group-hover:text-[#001C3D]/70 transition-colors duration-300 tracking-wide uppercase">
+                            <span>View documents</span>
+                            <span className="material-symbols-outlined text-sm">open_in_new</span>
+                        </Link>
+                    )}
                 </div>
             ))}
         </div>

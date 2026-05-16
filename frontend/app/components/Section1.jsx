@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function Section1() {
   return (
@@ -37,7 +36,7 @@ export default function Section1() {
 
         {/* Main headline */}
         <div className="flex-1 flex flex-col justify-end pb-6">
-          <p className="text-[#ffe088] uppercase tracking-[0.3em] text-[10px] font-bold mb-5">
+          <p className=" uppercase tracking-[0.3em] text-[10px] font-bold mb-5">
             University College Maastricht Study Association
           </p>
           <h1

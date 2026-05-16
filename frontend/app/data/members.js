@@ -2,73 +2,73 @@ export const members = [
     {
         img: "/president_eb 1.png",
         position: "President",
-        name: "Audrey Giraud",
+        name: "Anni Najorka",
         board: "EB"
     },
     {
-        img: "/treasurer_eb 1.png",
+        img: "/eb_treasurer.jpeg",
         position: "Treasurer",
-        name: "Delphine Dorleans",
+        name: "Kate Kronite",
         board: "EB"
     },
     {
-        img: "/secretary_eb 1.png",
+        img: "/eb-secretary.jpeg",
         position: "Secretary",
         name: "Misaki Miyake",
         board: "EB"
     },
     {
-        img: "/president_eb 1.png",
-        position: "Media",
-        name: "Audrey Giraud",
+        img: "/eb-marketing.jpeg",
+        position: "Marketing Executive",
+        name: "Jente Gietelink",
         board: "EB"
     },
     {
-        img: "/sbChair 1.png",
+        img: "/sb-chair.jpeg",
         position: "Social Chair",
-        name: "Pascal Freyer",
+        name: "Mathilde Aurade Hadchoel",
         board: "SB"
     },
     {
-        img: "/socialInternalExecutive 1.png",
-        position: "Social Internal",
-        name: "Mathilde Hadchoel",
+        img: "/sb-events.jpeg",
+        position: "Social Events Executive",
+        name: "Léna Pörneczi",
         board: "SB"
     },
     {
-        img: "/socialexternalExecutive 1.png",
-        position: "Social External",
-        name: "Jasmijn Jeronimus",
+        img: "/sb-ucRelations.jpeg",
+        position: "UC Relations Executive",
+        name: "Lorette Lebrec",
         board: "SB"
     },
     {
-        img: "/socialAcquisitions 1.png",
-        position: "Social Acquisitions",
-        name: "Iris Willems",
+        img: "/sb-acquisitions.jpeg",
+        position: "Acquisitions Executive",
+        name: "Kai Heinermann",
         board: "SB"
     },
     {
-        img: "/ab-chair-2 1.png",
+        img: "/ab-chair.jpeg",
         position: "Academic Chair",
-        name: "Maja Deutinger",
+        name: "Mirthe van Dijk",
         board: "AB"
     },
     {
-        img: "/academicInternalExecutive 1.png",
-        position: "Academic Internal",
-        name: "Juul Uienlief",
+        img: "/ab-events.jpeg",
+        position: "Academic Events Executive",
+        name: "Lorelei Clarke",
         board: "AB"
     },
     {
-        img: "/academicExternalExecutive 1.png",
-        position: "Academic External",
-        name: "Nik Schultz",
+        img: "/ab-studentAcademicAdvisor.jpeg",
+        position: "Student Academic Advisor Executive",
+        name: "Leonhard Cuzmin",
         board: "AB"
     },
     {
-        img: "/academicEventsExecutive 1.png",
-        position: "Academic Events",
-        name: "Charlotte Heuser",
+        img: "/ab-fseRepresentative.jpeg",
+        position: "FSE Representative Executive",
+        name: "Elisa Bauer",
         board: "AB"
     }
 ];
