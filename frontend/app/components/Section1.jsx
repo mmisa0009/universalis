@@ -54,7 +54,7 @@ export default function Section1() {
         {/* Bottom bar */}
         <div className="flex items-center justify-between">
           <span className="text-white/20 uppercase tracking-widest text-[9px] hidden md:block">
-            Est. 2018
+            Est. 2002
           </span>
           <div className="flex items-center gap-2 text-white/30 text-xs ml-auto">
             <span>Scroll to explore</span>

@@ -3,41 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
-
-const announcements = [
-  {
-    tag: 'Social',
-    tagColor: 'bg-[#d8e0f3] text-[#001C3D]',
-    title: 'The Winter Ball: Archive Edition',
-    time: 'Dec 15, 20:00',
-    location: 'The Great Hall',
-    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuASqr7M3GahuBbvhlVDjISwEufOW7GTxZc78OVJdE9Q6Yf2WblbSuq5TwvITRHGPnR2MKIlYagT-iMpoS7H3CdNeyZbVptz3rmQWd3Lm_4tYATD_PLSsJEzIETtcuWo9cC9ZP6QwRHwhkz7JJwc43kI4pR447AugwHtBNcSYE7LyRnYApD2Y73M7vn9pm2a4S4GaqyC9rTDq_Gc06PtgCPUGTzNWkDhMDXtVmOT-TGL-AkiqIoxW4mUTdILaUhx3s8lt4uUzF0kZew',
-  },
-  {
-    tag: 'Academic',
-    tagColor: 'bg-[#351100] text-[#b27658]',
-    title: 'GA: Budget Approval',
-    time: 'Nov 28, 18:30',
-    location: 'UCM Auditorium',
-    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAbh2IxOqF_qQi5BVffVh_VQNvYVOwamLJ6rutTrPqAGUCuVj5RZy-RJK6H_IdzcLO98tijOiusfgDSV9pjk3A3pmMN27l_kJTwJ7kpZfG5QOLL5i5sy2KDIIOn1rhGoNJ55YdBdBJVIWinjqeXlyXT0FlKkLt00-Rgu4Ctxyc69RqdPsf1LaPJyREKpxxVMo7HD2qK-X5Atu892ZAJTEFSwChdpqjao-0blGypLCPHeub0TBCOK_r431pfNseggA0tIVz8HcOGjFo',
-  },
-  {
-    tag: 'Academic',
-    tagColor: 'bg-[#351100] text-[#b27658]',
-    title: 'GA: Budget Approval',
-    time: 'Nov 28, 18:30',
-    location: 'UCM Auditorium',
-    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAbh2IxOqF_qQi5BVffVh_VQNvYVOwamLJ6rutTrPqAGUCuVj5RZy-RJK6H_IdzcLO98tijOiusfgDSV9pjk3A3pmMN27l_kJTwJ7kpZfG5QOLL5i5sy2KDIIOn1rhGoNJ55YdBdBJVIWinjqeXlyXT0FlKkLt00-Rgu4Ctxyc69RqdPsf1LaPJyREKpxxVMo7HD2qK-X5Atu892ZAJTEFSwChdpqjao-0blGypLCPHeub0TBCOK_r431pfNseggA0tIVz8HcOGjFo',
-  },
-  {
-    tag: 'Careers',
-    tagColor: 'bg-[#d8e0f3] text-[#001C3D]',
-    title: 'Alumni Mentorship Open',
-    time: 'Ongoing',
-    location: 'Online Portal',
-    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuACqFM8KGFCbmsWvYENY7LpuxJLL0hZk9aL3tdaLHpvL1GKMFRpu4ZY65xXraOsraNAO42PYzUqxAm-Nkos5gzVEZ6seVs-SIEUzjoFfODRomIeu8AxfGjJ6OH82NXucS3quuIazsa8fJ0-QURv6GAbQg2Jav6lrbCTZMDgRjiDT7LmhhGF0IYLC6jGPVTuVwGae0zytmVdrlBkQqvS3TxqLxUL1gDRqFkoCc50GKi0mu15VGcOP4gYiVI7TfuJ3SS6HmY6sb9MeEU',
-  },
-];
+import { announcements } from '../data/announcements';
 
 export default function Section2() {
     const sliderRef = useRef(null);
@@ -116,7 +82,7 @@ export default function Section2() {
         >
             {announcements.map((item, i) => (
                 <div key={i} className="snap-start flex-shrink-0 w-full sm:w-80 bg-white rounded-2xl overflow-hidden shadow-md group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
-                    <div className="h-52 overflow-hidden relative">
+                    <div className="h-64 overflow-hidden relative">
                         <Image
                             src={item.img}
                             alt={item.title}

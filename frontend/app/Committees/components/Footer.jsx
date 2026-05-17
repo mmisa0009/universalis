@@ -9,12 +9,12 @@ export default function Footer() {
                         <h3 className="text-sm font-semibold uppercase tracking-widest mb-3 opacity-50">Pages</h3>
                         <ul className="list-none space-y-2">
                             <li>
-                                <Link href="/" className="text-sm text-[#001C3D] hover:opacity-70 transition-opacity">
+                                <Link href="/" className="text-sm text-[#FFF8F0] hover:opacity-70 transition-opacity">
                                     Home
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className="text-sm text-[#001C3D] hover:opacity-70 transition-opacity">
+                                <Link href="#" className="text-sm text-[#FFF8F0] hover:opacity-70 transition-opacity">
                                     Privacy Policy
                                 </Link>
                             </li>
@@ -24,12 +24,12 @@ export default function Footer() {
                         <h3 className="text-sm font-semibold uppercase tracking-widest mb-3 opacity-50">Account</h3>
                         <ul className="list-none space-y-2">
                             <li>
-                                <Link href="/LogIn" className="text-sm text-[#001C3D] hover:opacity-70 transition-opacity">
+                                <Link href="/LogIn" className="text-sm text-[#FFF8F0] hover:opacity-70 transition-opacity">
                                     Log In
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/SignUp" className="text-sm text-[#001C3D] hover:opacity-70 transition-opacity">
+                                <Link href="/SignUp" className="text-sm text-[#FFF8F0] hover:opacity-70 transition-opacity">
                                     Sign Up
                                 </Link>
                             </li>

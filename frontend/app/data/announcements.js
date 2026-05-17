@@ -1,30 +1,42 @@
 export const announcements = [
-    {
-        img: "/GA_jan2025 1.png",
-        title: "Annual General Meeting",
-        time: "Jan 16th 18:30~",
-        location: "UCM Lecture Hall",
-        tags: ["Executive Board"]
-    },
-    {
-        img: "/music_Nov25 1.png",
-        title: "Open Mic Night",
-        time: "Jan 20th",
-        location: "Common Room",
-        tags: ["Music"]
-    },
-    {
-        img: "/Bookclub_Nov25 1.png",
-        title: "Game Night",
-        time: "Feb 5th 18:30~",
-        location: "room 101",
-        tags: ["Games", "Arts"]
-    },
-    {
-        img: "",
-        title: "gay agenda",
-        time: "Feb 10th",
-        location: "room 101",
-        tags: ["Gay Agenda"]
-    }
+  {
+    tag: 'Universalis AB',
+    tagColor: 'bg-[#d8e0f3] text-[#001C3D]',
+    title: 'Pizza with the Dean',
+    time: 'Sep 16th, 18:30',
+    location: 'Common Room',
+    img: '/ab-pizza.jpeg',
+  },
+  {
+    tag: 'Party',
+    tagColor: 'bg-[#351100] text-[#b27658]',
+    title: 'Winter Gala',
+    time: 'Feb 11th, 21:00',
+    location: 'The Social Hub',
+    img: '/partyEvent_winterGala.jpeg',
+  },
+  {
+    tag: 'Universalis EB',
+    tagColor: 'bg-[#351100] text-[#b27658]',
+    title: 'Policy GA',
+    time: 'Apr 16th, 18:30',
+    location: 'UCM Lecture Hall',
+    img: '/policyGA.jpeg',
+  },
+  {
+    tag: 'Spiritual Enlightenment',
+    tagColor: 'bg-[#d8e0f3] text-[#001C3D]',
+    title: 'Octoberfest',
+    time: 'September 30th, 18:30',
+    location: 'Common Room',
+    img: '/SE-octfes.jpeg',
+  },
+  {
+    tag: 'Universalis SB',
+    tagColor: 'bg-[#d8e0f3] text-[#001C3D]',
+    title: 'Beginning of Period Drinks',
+    time: 'January 8th, 18:30',
+    location: 'Common Room',
+    img: '/bopd-spring26.jpg',
+  },
 ];

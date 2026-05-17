@@ -33,7 +33,7 @@ export default function Account() {
                                 {/* Username (Read-only representation) */}
                                 <div className="space-y-1">
                                     <label className="font-sans text-xs uppercase tracking-widest text-[#44474e]">
-                                        Institutional Username
+                                        Username
                                     </label>
                                     <div className="w-full border-b border-[#c4c6cf] py-3 font-sans text-lg text-[#44474e] opacity-60 bg-transparent">
                                         j_arclight_archives
