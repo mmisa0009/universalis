@@ -25,7 +25,7 @@ export default function LoginPage() {
                         <LoginForm />
                         <div>
                             <h6 className='text-white text-sm  text-center mt-4'>
-                                Don't have an account yet?{"  "}
+                                Don&apos;t have an account yet?{"  "}
                             <Link href="SignUp" className='underline'>Sign Up</Link></h6>
                         </div>
                         </div>

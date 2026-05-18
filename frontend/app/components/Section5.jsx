@@ -13,7 +13,7 @@ export default function Section5() {
                 />
             </div>
             <div className="bg-[#001C3D] p-16 flex flex-col justify-center">
-                <h2 className="font-['Newsreader'] text-5xl text-white font-bold mb-8 italic">
+                <h2 className="text-5xl text-white font-bold mb-8">
                 Committees
                 </h2>
                 <p className="text-white/80 text-lg mb-12">

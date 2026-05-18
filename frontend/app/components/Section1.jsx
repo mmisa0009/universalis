@@ -1,50 +1,69 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function Section1() {
   return (
-    <header className="relative md:min-h-screen grid grid-cols-12 gap-0 overflow-hidden pt-14 px-4 pb-6 md:pt-20 md:px-8 md:pb-12 bg-[#001C3D]">
-      {/* Sidebar Spine */}
-        <div className="hidden sm:flex col-span-1 flex-col justify-between items-center py-12">
-            <h1
-            className="w-fit h-fit font-bold tracking-tighter text-[#FFF8F1] opacity-90 select-none whitespace-nowrap"
-            style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg) translateY(12%)', fontSize: 'clamp(2rem, 6vw, 5rem)', }}
-            >
-            UCMSA Universalis
-            </h1>
-        </div>
+    <header className="relative h-full bg-[#001C3D] overflow-hidden flex flex-col">
 
-      {/* Main Content */}
-      <div className="col-span-12 sm:col-span-11 flex flex-col gap-3">
-        <div className="relative aspect-[16/9] rounded-xl overflow-hidden shadow-2xl">
+      {/* Background image with gradient overlay */}
+      <div className="absolute inset-0">
+        <Image
+          src="/allMember.png"
+          alt=""
+          fill
+          className="object-cover opacity-35"
+          unoptimized
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#001C3D] via-[#001C3D]/30 to-[#001C3D]/0" />
+      </div>
+
+      {/* Left accent line */}
+      <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-[#ffe088]/40 to-transparent" />
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col h-full px-8 md:px-14 pt-10 pb-10">
+
+        {/* Top bar */}
+        <div className="flex items-center justify-between">
           <Image
-            src="allMember.png"
-            alt="Universalis Member Photo"
-            fill
-            className="object-cover"
-            unoptimized
+            src="/universalis-logo.png"
+            alt="Universalis logo"
+            width={80}
+            height={80}
+            className="w-18 h-auto opacity-85"
           />
-
-          {/* Floating Log In */}
-          <div className="absolute top-3 right-8">
-            <Link href="/LogIn">
-                <button className="bg-white/60 backdrop-blur-md px-6 py-2.5 rounded-full text-[#001C3D] hover:bg-white transition-all shadow-lg text-sm">
-                  Log In
-                </button>
-            </Link>
-          </div>
-
+          
         </div>
 
-        {/* Hero Text — always below the photo */}
-        <div className="bg-[#001C3D]/90 backdrop-blur-md p-4 md:p-8 rounded-xl w-full text-right">
-          <p className="font-['Newsreader'] text-xl md:text-[4.0vh] text-white italic mb-1 md:mb-2 leading-tight">
-            Enjoy the social and academic activities supported by Universalis.
-          </p>
-          <p className="text-white/80 uppercase tracking-widest text-[9px] md:text-xs">
+        {/* Main headline */}
+        <div className="flex-1 flex flex-col justify-end pb-6">
+          <p className=" uppercase tracking-[0.3em] text-[10px] font-bold mb-5">
             University College Maastricht Study Association
           </p>
+          <h1
+            className="font-bold text-white  leading-[0.88] mb-7"
+            style={{ fontSize: 'clamp(3.5rem, 9vw, 8.5rem)' }}
+          >
+            UCMSA<br />Universalis
+          </h1>
+          <p className="text-white/55 text-base md:text-lg max-w-lg leading-relaxed">
+            Enjoy the social and academic activities supported by Universalis —
+            a multicultural association with 750+ members.
+          </p>
         </div>
+
+        {/* Bottom bar */}
+        <div className="flex items-center justify-between">
+          <span className="text-white/20 uppercase tracking-widest text-[9px] hidden md:block">
+            Est. 2002
+          </span>
+          <div className="flex items-center gap-2 text-white/30 text-xs ml-auto">
+            <span>Scroll to explore</span>
+            <svg className="w-3 h-3 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+          </div>
+        </div>
+
       </div>
     </header>
   );
