@@ -3,8 +3,8 @@ import Link from 'next/link';
 export default function Footer() {
     return (
         <footer className="bg-[#001C3D] text-[#FFF8F0] overflow-hidden relative">
-            <div className="w-[70%] mx-auto border-t border-[#001C3D]/20 pt-10">
-                <div className='grid grid-cols-1 md:grid-cols-3 w-full mb-0 gap-8'>
+            <div className="w-[90%] md:w-[70%] mx-auto border-t border-[#001C3D]/20 pt-6 md:pt-10">
+                <div className='grid grid-cols-1 md:grid-cols-3 justify-items-center md:justify-items-start w-full mb-0 gap-6 md:gap-8'>
                     <div className="pages text-center md:text-left">
                         <h3 className="text-sm font-semibold uppercase tracking-widest mb-3 opacity-50">Pages</h3>
                         <ul className="list-none space-y-2">
