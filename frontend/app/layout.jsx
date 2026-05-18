@@ -1,5 +1,6 @@
 import './globals.css';
-import {Inter, Be_Vietnam_Pro, Playfair_Display, Roboto} from 'next/font/google';
+import { Inter, Be_Vietnam_Pro, Playfair_Display, Roboto } from 'next/font/google';
+import { AuthProvider } from './context/AuthContext';
 
 const inter = Inter({subsets: ['latin'], variable: '--font-inter'});
 const beVietnamPro = Be_Vietnam_Pro({
@@ -32,7 +33,9 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       </head>
       <body className='bg-[#001C3D] text-[#FFF8F0]'>
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
