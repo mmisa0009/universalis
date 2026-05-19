@@ -3,12 +3,7 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-
-// Mock user data — replace with real session/auth fetch
-const MOCK_USER = {
-    username: 'janedoe_001',
-    email: 'j.doe@student.maastrichtuniversity.nl',
-};
+import { useAuth } from '../context/AuthContext';
 
 type PasswordField = 'current' | 'new' | 'confirm';
 
@@ -50,6 +45,7 @@ function EyeIcon({ open }: { open: boolean }) {
 }
 
 export default function Account() {
+    const { user, token } = useAuth();
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -94,14 +90,19 @@ export default function Account() {
 
         setIsLoading(true);
         try {
-            // TODO: replace with real API call, e.g.:
-            // await fetch('/api/account/change-password', {
-            //   method: 'POST',
-            //   headers: { 'Content-Type': 'application/json' },
-            //   body: JSON.stringify({ currentPassword, newPassword }),
-            // });
-            await new Promise((r) => setTimeout(r, 800)); // simulated network delay
-
+            const res = await fetch('/api/account/change-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ currentPassword, newPassword }),
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                setStatus({ type: 'error', message: data.error || 'Something went wrong.' });
+                return;
+            }
             setStatus({ type: 'success', message: 'Password updated successfully.' });
             setCurrentPassword('');
             setNewPassword('');
@@ -145,7 +146,7 @@ export default function Account() {
                                     Username
                                 </label>
                                 <div className="w-full border-b border-[#c4c6cf] py-1.5 md:py-3 font-sans text-base md:text-lg text-[#44474e]/60 bg-transparent select-all">
-                                    {MOCK_USER.username}
+                                    {user?.username || '—'}
                                 </div>
                                 <p className="hidden sm:block text-[10px] italic text-[#44474e]/60">
                                     Username is tied to your archival identifier and cannot be changed.
@@ -156,7 +157,7 @@ export default function Account() {
                                     Registered Email
                                 </label>
                                 <div className="w-full border-b border-[#c4c6cf] py-1.5 md:py-3 font-sans text-base md:text-lg text-[#44474e]/60 bg-transparent select-all">
-                                    {MOCK_USER.email}
+                                    {user?.email || '—'}
                                 </div>
                             </div>
                         </div>
