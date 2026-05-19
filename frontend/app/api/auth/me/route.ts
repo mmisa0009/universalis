@@ -10,11 +10,16 @@ export async function GET(req: NextRequest) {
   if (error || !user) return NextResponse.json({ error: 'Invalid token.' }, { status: 401 });
 
   const supabaseAdmin = getSupabaseAdmin();
-  const { data: profile } = await supabaseAdmin
+  const { data: profile, error: profileError } = await supabaseAdmin
     .from('profiles')
     .select('username, role')
     .eq('id', user.id)
     .single();
+
+  // Log to server terminal so we can see what's happening
+  console.log('Looking up profile for user ID:', user.id);
+  console.log('Profile result:', profile);
+  console.log('Profile error:', profileError);
 
   return NextResponse.json({
     user: {

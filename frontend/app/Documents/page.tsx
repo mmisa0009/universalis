@@ -364,6 +364,7 @@ export default function Documents() {
   const [showUpload, setShowUpload] = useState(false);
 
   const isAdmin = user?.role === 'admin' || user?.role === 'board';
+  console.log('User object:', user, 'isAdmin:', isAdmin);
 
   // Redirect to login if not authenticated
   useEffect(() => {
