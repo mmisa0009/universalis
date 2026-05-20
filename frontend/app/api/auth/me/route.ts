@@ -16,10 +16,6 @@ export async function GET(req: NextRequest) {
     .eq('id', user.id)
     .single();
 
-  // Log to server terminal so we can see what's happening
-  console.log('Looking up profile for user ID:', user.id);
-  console.log('Profile result:', profile);
-  console.log('Profile error:', profileError);
 
   return NextResponse.json({
     user: {

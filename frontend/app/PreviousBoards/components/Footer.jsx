@@ -1,6 +1,10 @@
+'use client';
+
 import Link from 'next/link';
+import { useAuth } from '@/app/context/AuthContext';
 
 export default function Footer() {
+    const { user } = useAuth();
     return (
         <footer className="bg-[#001C3D] text-[#FFF8F0] overflow-hidden relative">
             <div className="w-[90%] md:w-[70%] mx-auto border-t border-[#001C3D]/20 pt-6 md:pt-10">
@@ -20,21 +24,23 @@ export default function Footer() {
                             </li>
                         </ul>
                     </div>
-                    <div className="account text-center md:text-left">
-                        <h3 className="text-sm font-semibold uppercase tracking-widest mb-3 opacity-50">Account</h3>
-                        <ul className="list-none space-y-2">
-                            <li>
-                                <Link href="/LogIn" className="text-sm text-[#FFF8F0] hover:opacity-70 transition-opacity">
-                                    Log In
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/SignUp" className="text-sm text-[#FFF8F0] hover:opacity-70 transition-opacity">
-                                    Sign Up
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
+                    {!user && (
+                        <div className="account text-center md:text-left">
+                            <h3 className="text-sm font-semibold uppercase tracking-widest mb-3 opacity-50">Account</h3>
+                            <ul className="list-none space-y-2">
+                                <li>
+                                    <Link href="/LogIn" className="text-sm text-[#FFF8F0] hover:opacity-70 transition-opacity">
+                                        Log In
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/SignUp" className="text-sm text-[#FFF8F0] hover:opacity-70 transition-opacity">
+                                        Sign Up
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                    )}
                     <div className="contact text-center md:text-left">
                         <h3 className="text-sm font-semibold uppercase tracking-widest mb-3 opacity-50">Contact Us</h3>
                         <div className="flex gap-3 items-center justify-center md:justify-start">

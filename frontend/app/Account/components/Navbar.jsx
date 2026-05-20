@@ -2,11 +2,20 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { useAuth } from '@/app/context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [loginDropdownOpen, setLoginDropdownOpen] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
+    const { user, logout } = useAuth();
+    const router = useRouter();
+
+    const handleLogout = async () => {
+        await logout();
+        router.push('/');
+    };
  
     return (
         <>
@@ -80,12 +89,20 @@ export default function Navbar() {
                             <Link href="/Account" className="block px-4 py-2.5 text-[#FFF8F0]/70 text-[2.0vh] hover:text-[#FFF8F0] hover:bg-white/10 transition-colors duration-150">
                                 Account
                             </Link>
-                            <Link href="/LogIn" className="block px-4 py-2.5 text-[#FFF8F0]/70 text-[2.0vh] hover:text-[#FFF8F0] hover:bg-white/10 transition-colors duration-150">
-                                Log In
-                            </Link>
-                            <Link href="/SignUp" className="block px-4 py-2.5 text-[#FFF8F0]/70 text-[2.0vh] hover:text-[#FFF8F0] hover:bg-white/10 transition-colors duration-150">
-                                Sign Up
-                            </Link>
+                            {user ? (
+                                <button onClick={handleLogout} className="w-full text-left block px-4 py-2.5 text-[#FFF8F0]/70 text-[2.0vh] hover:text-[#FFF8F0] hover:bg-white/10 transition-colors duration-150">
+                                    Log Out
+                                </button>
+                            ) : (
+                                <>
+                                    <Link href="/LogIn" className="block px-4 py-2.5 text-[#FFF8F0]/70 text-[2.0vh] hover:text-[#FFF8F0] hover:bg-white/10 transition-colors duration-150">
+                                        Log In
+                                    </Link>
+                                    <Link href="/SignUp" className="block px-4 py-2.5 text-[#FFF8F0]/70 text-[2.0vh] hover:text-[#FFF8F0] hover:bg-white/10 transition-colors duration-150">
+                                        Sign Up
+                                    </Link>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -133,12 +150,20 @@ export default function Navbar() {
                         <Link href="/Account" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">
                             Account
                         </Link>
-                        <Link href="/LogIn" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">
-                            Log In
-                        </Link>
-                        <Link href="/SignUp" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm font-medium hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">
-                            Sign Up
-                        </Link>
+                        {user ? (
+                            <button onClick={() => { setMobileOpen(false); handleLogout(); }} className="w-full text-left px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">
+                                Log Out
+                            </button>
+                        ) : (
+                            <>
+                                <Link href="/LogIn" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">
+                                    Log In
+                                </Link>
+                                <Link href="/SignUp" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm font-medium hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">
+                                    Sign Up
+                                </Link>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

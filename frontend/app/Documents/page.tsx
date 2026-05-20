@@ -304,26 +304,20 @@ function DocumentCard({ doc, isAdmin, onDelete }: DocumentCardProps) {
           <span className="material-symbols-outlined text-[#001c3da1] text-lg">calendar_today</span>
           <span className="text-xs text-[#001c3da1] font-medium">{formatDate(doc.created_at)}</span>
         </div>
-        {isPdf ? (
-          <a
-            href={doc.file_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#001c3d] font-bold text-sm flex items-center gap-1 hover:underline"
-          >
-            View
-            <span className="material-symbols-outlined text-sm">open_in_new</span>
-          </a>
-        ) : (
-          <a
-            href={doc.file_url}
-            download
-            className="text-[#001c3d] font-bold text-sm flex items-center gap-1 hover:underline"
-          >
-            Download
-            <span className="material-symbols-outlined text-sm">download</span>
-          </a>
-        )}
+        <button
+          onClick={async () => {
+            const res = await fetch(`/api/documents/${doc.id}/file`, {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+            const data = await res.json();
+            if (data.url) window.open(data.url, '_blank');
+          }}
+          className="text-[#001c3d] font-bold text-sm flex items-center gap-1 hover:underline">
+          {isPdf ? 'View' : 'Download'}
+          <span className="material-symbols-outlined text-sm">
+            {isPdf ? 'open_in_new' : 'download'}
+          </span>
+        </button>
       </div>
     </article>
   );
