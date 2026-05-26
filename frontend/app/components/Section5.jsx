@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Section5() {
     return (
@@ -22,10 +23,10 @@ export default function Section5() {
                 </p>
                 <div className="flex flex-wrap gap-4">
                     <button className="px-8 py-3 bg-white text-[#001C3D] rounded-full font-bold hover:scale-105 transition-transform">
-                        Explore Committees
+                        <Link href="/Committees">Explore Committees</Link>
                     </button>
                     <button className="px-8 py-3 border border-white text-white rounded-full font-bold hover:bg-white/10 transition-colors">
-                        Ask questions
+                        <Link href="mailto:ucmsa-secretary@maastrichtuniversity.nl">Ask questions</Link>
                     </button>
                 </div>
             </div>
