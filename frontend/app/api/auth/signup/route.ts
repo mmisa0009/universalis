@@ -1,4 +1,4 @@
-import { getSupabaseAdmin } from '@/lib/supabase';
+import { getSupabase, getSupabaseAdmin } from '@/lib/supabase';
 import { NextRequest, NextResponse } from 'next/server';
 
 // Simple in-memory rate limiter: 5 signups per IP per 15 minutes
@@ -29,19 +29,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'All fields are required.' }, { status: 400 });
   }
 
-  const supabaseAdmin = getSupabaseAdmin();
-
-  const { data, error } = await supabaseAdmin.auth.admin.createUser({
-    email,
-    password,
-    email_confirm: false,
-    user_metadata: { username },
-  });
+  // Use regular signUp so Supabase respects the project's email confirmation setting
+  const supabase = getSupabase();
+  const { data, error } = await supabase.auth.signUp({ email, password });
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   }
 
+  if (!data.user) {
+    return NextResponse.json({ error: 'Signup failed.' }, { status: 500 });
+  }
+
+  // Create profile with service role client (bypasses RLS)
+  const supabaseAdmin = getSupabaseAdmin();
   const { error: profileError } = await supabaseAdmin
     .from('profiles')
     .insert({ id: data.user.id, username });
