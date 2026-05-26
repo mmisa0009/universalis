@@ -332,9 +332,9 @@ function ArchivistCard() {
         <p className="text-white/80 text-sm mb-6 max-w-xs">
           Request archived documents to a secretary.
         </p>
-        <button className="px-6 py-2 bg-[#4f3000] text-[#fea619] rounded-full text-sm font-bold border border-[#fea619]/30 hover:bg-[#6b4000] transition-colors">
+        <a href="mailto:ucmsa-secretary@maastrichtuniversity.nl" className="px-6 py-2 bg-[#4f3000] text-[#fea619] rounded-full text-sm font-bold border border-[#fea619]/30 hover:bg-[#6b4000] transition-colors">
           Contact secretary
-        </button>
+        </a>
       </div>
     </article>
   );

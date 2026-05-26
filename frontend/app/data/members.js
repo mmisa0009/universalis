@@ -1,72 +1,72 @@
 export const members = [
     {
-        img: "/president_eb 1.png",
+        img: "/Fall2024-president.png",
         position: "President",
         name: "Anni Najorka",
         board: "EB"
     },
     {
-        img: "/eb_treasurer.jpeg",
+        img: "/Fall2025_treasurer.jpeg",
         position: "Treasurer",
         name: "Kate Kronite",
         board: "EB"
     },
     {
-        img: "/eb-secretary.jpeg",
+        img: "/Fall2025-secretary.jpeg",
         position: "Secretary",
         name: "Misaki Miyake",
         board: "EB"
     },
     {
-        img: "/eb-marketing.jpeg",
+        img: "/Fall2025-marketing.jpeg",
         position: "Marketing Executive",
         name: "Jente Gietelink",
         board: "EB"
     },
     {
-        img: "/sb-chair.jpeg",
+        img: "/Fall2025-socialChair.jpeg",
         position: "Social Chair",
         name: "Mathilde Aurade Hadchoel",
         board: "SB"
     },
     {
-        img: "/sb-events.jpeg",
+        img: "/Fall2025-socialEvents.jpeg",
         position: "Social Events Executive",
         name: "Léna Pörneczi",
         board: "SB"
     },
     {
-        img: "/sb-ucRelations.jpeg",
+        img: "/Fall2025-ucRelations.jpeg",
         position: "UC Relations Executive",
         name: "Lorette Lebrec",
         board: "SB"
     },
     {
-        img: "/sb-acquisitions.jpeg",
+        img: "/Fall2025-acquisitions.jpeg",
         position: "Acquisitions Executive",
         name: "Kai Heinermann",
         board: "SB"
     },
     {
-        img: "/ab-chair.jpeg",
+        img: "/Fall2025-ab-chair.jpeg",
         position: "Academic Chair",
         name: "Mirthe van Dijk",
         board: "AB"
     },
     {
-        img: "/ab-events.jpeg",
+        img: "/Fall2025-AbEvents.jpeg",
         position: "Academic Events Executive",
         name: "Lorelei Clarke",
         board: "AB"
     },
     {
-        img: "/ab-studentAcademicAdvisor.jpeg",
+        img: "/Fall2025-studentAcademicAdvisor.jpeg",
         position: "Student Academic Advisor Executive",
         name: "Leonhard Cuzmin",
         board: "AB"
     },
     {
-        img: "/ab-fseRepresentative.jpeg",
+        img: "/Fall2025-fseRepresentative.jpeg",
         position: "FSE Representative Executive",
         name: "Elisa Bauer",
         board: "AB"
