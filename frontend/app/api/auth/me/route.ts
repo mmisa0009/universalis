@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
   if (error || !user) return NextResponse.json({ error: 'Invalid token.' }, { status: 401 });
 
   const supabaseAdmin = getSupabaseAdmin();
-  const { data: profile, error: profileError } = await supabaseAdmin
+  const { data: profile } = await supabaseAdmin
     .from('profiles')
     .select('username, role')
     .eq('id', user.id)
