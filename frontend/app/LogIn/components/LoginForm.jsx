@@ -110,7 +110,7 @@ export default function LoginForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <InputField
         label="Email"
-        type="text"
+        type="email"
         placeholder="Enter your email"
         id="email"
         value={emailOrUsername}
