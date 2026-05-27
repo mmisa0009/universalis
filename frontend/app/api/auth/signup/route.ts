@@ -38,8 +38,8 @@ export async function POST(req: NextRequest) {
   }
 
   if (!data.user && !data.session) {
-    return NextResponse.json({ error: 'Signup failed.' }, { status: 500 });
-}
+    return NextResponse.json({ success: true }, { status: 201 });
+  }
 
   const userId = data.user?.id;
   if (!userId) {
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
     .from('profiles')
     .insert({ id: userId, username });
 
-  if (profileError) {
+  if (profileError && !profileError.code?.includes('23505')) {
     return NextResponse.json({ error: profileError.message }, { status: 500 });
   }
 
