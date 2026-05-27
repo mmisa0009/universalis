@@ -12,6 +12,7 @@ export default function SignupForm() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -31,13 +32,29 @@ export default function SignupForm() {
         return;
       }
 
-      // Redirect to login after successful signup
-      router.push('/LogIn');
+      setSuccess(true);
     } catch {
       setError('Something went wrong. Please try again.');
     } finally {
       setLoading(false);
     }
+  }
+
+  if (success) {
+    return (
+      <div className="text-center py-4">
+        <p className="text-white font-semibold text-lg mb-2">Check your inbox!</p>
+        <p className="text-white/80 text-sm mb-6">
+          We sent a confirmation link to <strong>{email}</strong>. Click it to activate your account.
+        </p>
+        <button
+          onClick={() => router.push('/LogIn')}
+          className="bg-[#001C3D] text-[#FFF8F0] px-6 py-2 rounded-lg text-sm hover:bg-[#FFF8F0] hover:text-[#001C3D]"
+        >
+          Go to Log In
+        </button>
+      </div>
+    );
   }
 
   return (
@@ -68,7 +85,7 @@ export default function SignupForm() {
         onChange={(e) => setPassword(e.target.value)}
         disabled={loading}
       />
-      {error && <p className="text-[#FFF8F0] text-sm">{error}</p>}
+      {error && <p className="text-yellow-300 text-sm">{error}</p>}
       <button
         type="submit"
         disabled={loading}
