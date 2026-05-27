@@ -109,9 +109,9 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <InputField
-        label="Email or Username"
+        label="Email"
         type="text"
-        placeholder="Enter your email or username"
+        placeholder="Enter your email"
         id="email"
         value={emailOrUsername}
         onChange={(e) => setEmailOrUsername(e.target.value)}
