@@ -232,6 +232,7 @@ function DocumentCard({ doc, isAdmin, onDelete }: DocumentCardProps) {
   const fi = fileIcons[ft];
   const [menuOpen, setMenuOpen] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [opening, setOpening] = useState(false);
   const { token } = useAuth();
 
   async function handleDelete() {
@@ -249,19 +250,38 @@ function DocumentCard({ doc, isAdmin, onDelete }: DocumentCardProps) {
     }
   }
 
+  async function handleOpen() {
+    if (opening) return;
+    setOpening(true);
+    try {
+      const res = await fetch(`/api/documents/${doc.id}/file`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+      if (data.url) window.open(data.url, '_blank');
+    } finally {
+      setOpening(false);
+    }
+  }
+
   const isPdf = ft === 'pdf';
 
   return (
-    <article className="bg-white p-6 rounded-3xl hover:-translate-y-1 transition-all duration-300 group relative">
+    <article
+      onClick={handleOpen}
+      className="bg-white p-6 rounded-3xl hover:-translate-y-1 transition-all duration-300 group relative cursor-pointer"
+    >
       {/* Icon row */}
       <div className="flex justify-between items-start mb-6">
         <div className={`w-14 h-14 ${fi.bg} rounded-2xl flex items-center justify-center ${fi.text}`}>
-          <span className="material-symbols-outlined text-3xl">{fi.icon}</span>
+          <span className="material-symbols-outlined text-3xl">
+            {opening ? 'hourglass_empty' : fi.icon}
+          </span>
         </div>
         {isAdmin && (
           <div className="relative">
             <button
-              onClick={() => setMenuOpen((v) => !v)}
+              onClick={(e) => { e.stopPropagation(); setMenuOpen((v) => !v); }}
               className="text-[#001c3da1] hover:text-[#865400] transition-colors"
             >
               <span className="material-symbols-outlined">more_vert</span>
@@ -269,7 +289,7 @@ function DocumentCard({ doc, isAdmin, onDelete }: DocumentCardProps) {
             {menuOpen && (
               <div className="absolute right-0 top-8 bg-white border border-gray-100 rounded-xl shadow-lg z-10 min-w-[120px]">
                 <button
-                  onClick={handleDelete}
+                  onClick={(e) => { e.stopPropagation(); handleDelete(); }}
                   disabled={deleting}
                   className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors rounded-xl"
                 >
@@ -304,20 +324,12 @@ function DocumentCard({ doc, isAdmin, onDelete }: DocumentCardProps) {
           <span className="material-symbols-outlined text-[#001c3da1] text-lg">calendar_today</span>
           <span className="text-xs text-[#001c3da1] font-medium">{formatDate(doc.created_at)}</span>
         </div>
-        <button
-          onClick={async () => {
-            const res = await fetch(`/api/documents/${doc.id}/file`, {
-              headers: { Authorization: `Bearer ${token}` },
-            });
-            const data = await res.json();
-            if (data.url) window.open(data.url, '_blank');
-          }}
-          className="text-[#001c3d] font-bold text-sm flex items-center gap-1 hover:underline">
-          {isPdf ? 'View' : 'Download'}
+        <div className="flex items-center gap-1 text-[#001c3da1] text-xs font-semibold">
+          {isPdf ? 'Open' : 'Download'}
           <span className="material-symbols-outlined text-sm">
             {isPdf ? 'open_in_new' : 'download'}
           </span>
-        </button>
+        </div>
       </div>
     </article>
   );

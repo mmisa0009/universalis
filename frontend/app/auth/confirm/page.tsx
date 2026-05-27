@@ -15,19 +15,31 @@ function ConfirmContent() {
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
 
   useEffect(() => {
-    const tokenHash = searchParams.get('token_hash');
-    const type = searchParams.get('type') as 'signup' | null;
+  const tokenHash = searchParams.get('token_hash');
+  const type = searchParams.get('type') as 'signup' | null;
 
-    if (!tokenHash || !type) {
-      setStatus('error');
-      return;
-    }
+  if (!tokenHash || !type) {
+    // No token — check if already logged in
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session) setStatus('success');
+      else setStatus('error');
+    });
+    return;
+  }
 
     supabase.auth.verifyOtp({ token_hash: tokenHash, type })
-      .then(({ error }) => {
-        setStatus(error ? 'error' : 'success');
-      });
-  }, [searchParams]);
+        .then(({ error }) => {
+        if (error) {
+            // Token may already be used — check if confirmed anyway
+            supabase.auth.getSession().then(({ data }) => {
+                if (data.session) setStatus('success');
+                else setStatus('error');
+            });
+        } else {
+            setStatus('success');
+        }
+        });
+    }, [searchParams]);
 
   if (status === 'loading') {
     return <p className="text-[#FFF8F0]">Verifying your email...</p>;
