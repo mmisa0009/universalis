@@ -37,15 +37,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   }
 
-  if (!data.user) {
+  if (!data.user && !data.session) {
     return NextResponse.json({ error: 'Signup failed.' }, { status: 500 });
+}
+
+  const userId = data.user?.id;
+  if (!userId) {
+      return NextResponse.json({ success: true }, { status: 201 });
   }
 
   // Create profile with service role client (bypasses RLS)
   const supabaseAdmin = getSupabaseAdmin();
   const { error: profileError } = await supabaseAdmin
     .from('profiles')
-    .insert({ id: data.user.id, username });
+    .insert({ id: userId, username });
 
   if (profileError) {
     return NextResponse.json({ error: profileError.message }, { status: 500 });
