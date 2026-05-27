@@ -40,7 +40,7 @@ export const previousBoards = [
         ordinal: "Fall 2024",
         members: [
             { role: "President",  name: "Audrey Giraud", img: "/Fall2024-president.jpeg" },
-            { role: "Treasurer",  name: "Delphine Dorleans", img: "/Fall2024-treasurer.png" },
+            { role: "Treasurer",  name: "Delphine Dorleans", img: "/Fall2024-treasurer.jpeg" },
             { role: "Secretary",  name: "Misaki Miyake", img: "/Fall2024-secretary.JPG" },
             { role: "Social Chair",  name: "Pascal Freyer", img: "/Fall2024-socialChair.png" },
             { role: "Social Internal",  name: "Mathilde Auradé-Hadchouel", img: "/Fall2024-socialInternal.jpg" },
