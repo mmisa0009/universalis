@@ -44,7 +44,7 @@ export default function LoginForm() {
       const meData = await meRes.json();
 
       login(token, meData.user);
-      router.push('/Documents');
+      router.back();
     } catch {
       setError('Something went wrong. Please try again.');
     } finally {
