@@ -49,11 +49,12 @@ export default function HomePage() {
     };
 
     return (
+        <>
+        <Navbar />
         <div
             ref={containerRef}
-            className="h-screen overflow-y-scroll snap-y snap-proximity"
+            className="h-screen overflow-y-scroll md:snap-y md:snap-proximity"
         >
-            <Navbar />
 
             {SECTIONS.map((s, i) => {
                 const isSnapped = i <= 4;
@@ -62,7 +63,7 @@ export default function HomePage() {
                         key={s.id}
                         id={s.id}
                         ref={(el) => { sectionRefs.current[i] = el; }}
-                        className={isSnapped ? 'h-screen snap-start overflow-hidden' : ''}
+                        className={isSnapped ? 'h-screen md:snap-start overflow-hidden' : ''}
                     >
                         {i === 0 && <Section1 />}
                         {i === 1 && <Section2 />}
@@ -93,5 +94,6 @@ export default function HomePage() {
                 ))}
             </div>
         </div>
+        </>
     );
 }

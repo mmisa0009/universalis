@@ -1,6 +1,6 @@
 export const members = [
     {
-        img: "/Fall2024-president.png",
+        img: "/Fall2024-president.jpeg",
         position: "President",
         name: "Anni Najorka",
         board: "EB"

@@ -91,42 +91,45 @@ export default function Navbar() {
 
             {/* Mobile nav */}
             <div className="md:hidden fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90vw]">
-                <div className="flex items-center justify-between px-5 h-11 rounded-full bg-white/70 backdrop-blur-md shadow-[0_4px_24px_rgba(0,28,61,0.10)] border border-white/40">
+                <button
+                    onClick={() => setMobileOpen(!mobileOpen)}
+                    aria-label="Toggle menu"
+                    style={{ touchAction: 'manipulation' }}
+                    className="w-full flex items-center justify-between px-5 h-11 rounded-full bg-white/70 backdrop-blur-md shadow-[0_4px_24px_rgba(0,28,61,0.10)] border border-white/40 cursor-pointer"
+                >
                     <span className="text-[#001C3D] font-medium text-sm tracking-tight">Menu</span>
-                    <button
-                        onClick={() => setMobileOpen(!mobileOpen)}
-                        aria-label="Toggle menu"
-                        className="flex flex-col justify-center gap-[5px] w-6 h-6"
-                    >
+                    <div className="flex flex-col justify-center gap-[5px] w-6 h-6">
                         <span className={`block h-[1.5px] w-full bg-[#001C3D] rounded-full transition-all duration-300 origin-center ${mobileOpen ? 'rotate-45 translate-y-[6.5px]' : ''}`} />
                         <span className={`block h-[1.5px] w-full bg-[#001C3D] rounded-full transition-all duration-200 ${mobileOpen ? 'opacity-0 scale-x-0' : ''}`} />
                         <span className={`block h-[1.5px] w-full bg-[#001C3D] rounded-full transition-all duration-300 origin-center ${mobileOpen ? '-rotate-45 -translate-y-[6.5px]' : ''}`} />
-                    </button>
-                </div>
-
-                <div className={`mt-2 rounded-2xl border border-white/40 bg-white/80 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,28,61,0.12)] overflow-hidden transition-all duration-300 ease-in-out ${mobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                    <div className="flex flex-col py-3">
-                        <Link href="/" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D] text-sm hover:bg-[#001C3D]/5 transition-colors">Home</Link>
-                        <Link href="/Committees" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">Committees</Link>
-                        <Link href="/PreviousBoards" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">Previous Boards</Link>
-                        <div className="mx-6 my-1 h-px bg-[#001C3D]/10" />
-                        <Link href="https://shop.ucmsa.nl/" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">Shop</Link>
-                        <Link href="/Documents" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">Documents</Link>
-                        <Link href="/Faq" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">FAQ</Link>
-                        <div className="mx-6 my-1 h-px bg-[#001C3D]/10" />
-                        {user ? (
-                            <>
-                                <Link href="/Account" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">Account</Link>
-                                <button onClick={() => { setMobileOpen(false); handleLogout(); }} className="text-left px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">Log Out</button>
-                            </>
-                        ) : (
-                            <>
-                                <Link href="/LogIn" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">Log In</Link>
-                                <Link href="/SignUp" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm font-medium hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">Sign Up</Link>
-                            </>
-                        )}
                     </div>
-                </div>
+                </button>
+
+                {mobileOpen && (
+                    <div className="mt-2 rounded-2xl border border-white/40 bg-white/80 shadow-[0_8px_40px_rgba(0,28,61,0.12)] overflow-hidden">
+                        <div className="flex flex-col py-3">
+                            <Link href="/" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D] text-sm hover:bg-[#001C3D]/5 transition-colors">Home</Link>
+                            <Link href="/Committees" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">Committees</Link>
+                            <Link href="/PreviousBoards" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">Previous Boards</Link>
+                            <div className="mx-6 my-1 h-px bg-[#001C3D]/10" />
+                            <Link href="https://shop.ucmsa.nl/" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">Shop</Link>
+                            <Link href="/Documents" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">Documents</Link>
+                            <Link href="/Faq" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">FAQ</Link>
+                            <div className="mx-6 my-1 h-px bg-[#001C3D]/10" />
+                            {user ? (
+                                <>
+                                    <Link href="/Account" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">Account</Link>
+                                    <button onClick={() => { setMobileOpen(false); handleLogout(); }} className="text-left px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">Log Out</button>
+                                </>
+                            ) : (
+                                <>
+                                    <Link href="/LogIn" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">Log In</Link>
+                                    <Link href="/SignUp" onClick={() => setMobileOpen(false)} className="px-6 py-3 text-[#001C3D]/70 text-sm font-medium hover:bg-[#001C3D]/5 hover:text-[#001C3D] transition-colors">Sign Up</Link>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                )}
             </div>
         </>
     );

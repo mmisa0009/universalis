@@ -39,13 +39,13 @@ export default function Section2() {
     };
 
     return (
-    <section className="h-full flex flex-col pt-20 pb-10 px-4 sm:pt-24 sm:pb-14 sm:px-8 bg-[#f9f3eb]">
+    <section className="h-full flex flex-col pt-24 pb-10 px-4 sm:pt-28 sm:pb-14 sm:px-8 bg-[#f9f3eb]">
         <div className="flex justify-between items-end mb-8 sm:mb-12">
             <div>
                 <h2 className="text-3xl sm:text-5xl font-bold text-[#001C3D]">Announcements</h2>
                 <div className="h-1 w-24 bg-[#001C3D] mt-4"></div>
             </div>
-            <div className="flex gap-4">
+            <div className="hidden sm:flex gap-4">
                 <button onClick={scrollLeft} className="group w-12 h-12 rounded-full border border-[#74777f] flex items-center justify-center hover:bg-[#001C3D] hover:border-[#001C3D] hover:shadow-lg transition-all duration-300">
                     <div className="relative w-6 h-6">
                         <Image
