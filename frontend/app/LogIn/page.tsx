@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import LoginForm from './components/LoginForm';
 import Footer from './components/Footer';
 import Image from 'next/image';
@@ -22,7 +23,9 @@ export default function LoginPage() {
                         <h3 className='text-white text-lg font-semibold text-center mb-4 xl:text-right'>
                             Welcome Back
                         </h3>
-                        <LoginForm />
+                        <Suspense fallback={<div className="h-40" />}>
+                            <LoginForm />
+                        </Suspense>
                         <div>
                             <h6 className='text-white text-sm  text-center mt-4'>
                                 Don&apos;t have an account yet?{"  "}

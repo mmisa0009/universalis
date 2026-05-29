@@ -375,7 +375,7 @@ export default function Documents() {
   // Redirect to login if not authenticated
   useEffect(() => {
     if (!authLoading && !user) {
-      router.push('/LogIn');
+      router.replace('/LogIn?redirect=/Documents');
     }
   }, [authLoading, user, router]);
 
