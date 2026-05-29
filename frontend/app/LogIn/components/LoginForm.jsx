@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../../context/AuthContext';
 import InputField from './InputField';
 
 export default function LoginForm() {
   const { login } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const [emailOrUsername, setEmailOrUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -44,7 +45,8 @@ export default function LoginForm() {
       const meData = await meRes.json();
 
       login(token, meData.user);
-      router.back();
+      const redirect = searchParams.get('redirect') || '/Documents';
+      router.replace(redirect === '/auth/confirm' ? '/' : redirect);
     } catch {
       setError('Something went wrong. Please try again.');
     } finally {
