@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
 import { useAuth } from '../context/AuthContext';
 
 const TAG_COLORS = [
@@ -153,7 +152,8 @@ export default function AnnouncementModal({ announcement, onClose, onSave }) {
               >
                 {imagePreview ? (
                   <>
-                    <Image src={imagePreview} alt="preview" fill className="object-cover" unoptimized />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={imagePreview} alt="preview" className="absolute inset-0 w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
                       <div className="flex items-center gap-2 text-white text-sm font-semibold">
                         <span className="material-symbols-outlined text-base">photo_camera</span>

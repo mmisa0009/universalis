@@ -176,12 +176,11 @@ export default function Section2() {
 
                             <div className="h-64 overflow-hidden relative">
                                 {item.image_url ? (
-                                    <Image
+                                    // eslint-disable-next-line @next/next/no-img-element
+                                    <img
                                         src={item.image_url}
                                         alt={item.title}
-                                        fill
-                                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                        unoptimized
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                     />
                                 ) : (
                                     <div className="w-full h-full bg-[#001C3D]/10 flex items-center justify-center">
