@@ -2,7 +2,7 @@ import { getSupabase, getSupabaseAdmin } from '@/lib/supabase';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET() {
-  const supabase = getSupabase();
+  const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('announcements')
     .select('*')
