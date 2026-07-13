@@ -13,7 +13,7 @@ async function authorizeAdmin(req: NextRequest) {
   const { data: profile } = await supabaseAdmin
     .from('profiles').select('role').eq('id', user.id).single();
 
-  if (!profile || !['board', 'admin'].includes(profile.role)) {
+  if (!profile || !['board', 'admin'].includes(profile.role?.toLowerCase())) {
     return { error: 'Insufficient permissions.', status: 403 };
   }
 
