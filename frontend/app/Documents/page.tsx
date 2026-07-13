@@ -39,7 +39,6 @@ function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
-const tags = ['2024 Semester', 'Official', 'Templates', 'Archive'];
 const CATEGORIES = ['Official', 'Minutes', 'Finance', 'Committees', 'Templates'];
 
 // ─── Upload Modal ─────────────────────────────────────────────────────────────
@@ -365,7 +364,6 @@ export default function Documents() {
   const [search, setSearch] = useState('');
   const [fileFilter, setFileFilter] = useState('All File Types');
   const [catFilter, setCatFilter] = useState('All Categories');
-  const [activeTag, setActiveTag] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showUpload, setShowUpload] = useState(false);
 
@@ -415,13 +413,7 @@ export default function Documents() {
       (fileFilter === 'PDF Documents' && ft === 'pdf') ||
       (fileFilter === 'DOCX Files' && ft === 'docx') ||
       (fileFilter === 'Spreadsheets' && ft === 'xlsx');
-    const matchTag =
-      !activeTag ||
-      (activeTag === '2024 Semester' && d.created_at?.startsWith('2024')) ||
-      (activeTag === 'Official' && d.category === 'Official') ||
-      (activeTag === 'Templates' && d.category === 'Templates') ||
-      activeTag === 'Archive';
-    return matchFile && matchTag;
+    return matchFile;
   });
 
   if (authLoading) {
@@ -516,7 +508,7 @@ export default function Documents() {
               {/* Reset button */}
               <div className="lg:col-span-2 flex gap-2">
                 <button
-                  onClick={() => { setSearch(''); setFileFilter('All File Types'); setCatFilter('All Categories'); setActiveTag(null); }}
+                  onClick={() => { setSearch(''); setFileFilter('All File Types'); setCatFilter('All Categories'); }}
                   className={`flex-1 bg-[#001c3da1] text-[#FFF8F0] font-bold rounded-xl flex items-center justify-center gap-2 transition-all duration-300 hover:bg-[#1c6b51]/10 ${isScrolled ? 'py-2 text-sm' : 'py-3 sm:py-4'}`}
                 >
                   <span className="material-symbols-outlined">filter_list</span>
@@ -525,22 +517,6 @@ export default function Documents() {
               </div>
             </div>
 
-            {/* Popular Tags */}
-            <div className={`flex flex-wrap gap-2 items-center transition-all duration-300 overflow-hidden ${isScrolled ? 'max-h-0 opacity-0 pointer-events-none' : 'max-h-20 opacity-100'}`}>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#FFF8F0] px-2">Popular Tags:</span>
-              {tags.map((tag) => (
-                <button
-                  key={tag}
-                  onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-                  className={[
-                    'px-4 py-1.5 rounded-full text-xs font-semibold transition-colors',
-                    activeTag === tag ? 'bg-[#1c6b51] text-white' : 'bg-[#c9d3ff] text-[#1d3989] hover:bg-[#dce1ff]',
-                  ].join(' ')}
-                >
-                  {tag}
-                </button>
-              ))}
-            </div>
           </div>
         </section>
 
