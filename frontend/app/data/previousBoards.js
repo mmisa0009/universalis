@@ -89,7 +89,7 @@ export const previousBoards = [
             { role: "Treasurer",  name: "Elena Lungu", img: "/Spring2020-treasurer.jpg" },
             { role: "Acquisitions",  name: "Kendra Kibbey", img: "/Spring2020-acquisitions.jpg" },
             { role: "External Executive",  name: "Manuel Ntsoumou", img: "/Spring2020-external.jpg" },
-            { role: "Social Executive",  name: "TTies Kiem", img: "/Spring2020-social.jpg" },
+            { role: "Social Executive",  name: "Ties Kiem", img: "/Spring2020-social.jpg" },
         ],
     },
 ];
