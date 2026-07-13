@@ -93,7 +93,7 @@ function ResetContent() {
                 className="w-full rounded-lg p-2 bg-white/80 text-black placeholder-black/30 focus:outline-none"
             />
             </div>
-            {error && <p className="text-yellow-300 text-sm">{error}</p>}
+            {error && <p className="text-red-400 text-sm">{error}</p>}
             <button
             type="submit"
             disabled={loading}

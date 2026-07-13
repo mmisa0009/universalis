@@ -29,6 +29,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'All fields are required.' }, { status: 400 });
   }
 
+  const domain = email.split('@')[1]?.toLowerCase();
+  const allowedDomains = ['maastrichtuniversity.nl', 'student.maastrichtuniversity.nl'];
+  if (!domain || !allowedDomains.includes(domain)) {
+    return NextResponse.json(
+      { error: 'Only Maastricht University email addresses are allowed (@maastrichtuniversity.nl or @student.maastrichtuniversity.nl).' },
+      { status: 400 }
+    );
+  }
+
   // Use regular signUp so Supabase respects the project's email confirmation setting
   const supabase = getSupabase();
   const { data, error } = await supabase.auth.signUp({ email, password });

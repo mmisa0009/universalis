@@ -128,7 +128,7 @@ export default function LoginForm() {
         onChange={(e) => setPassword(e.target.value)}
         disabled={loading}
       />
-      {error && <p className="text-yellow-300 text-sm">{error}</p>}
+      {error && <p className="text-red-400 text-sm">{error}</p>}
       <button
         type="submit"
         disabled={loading}
