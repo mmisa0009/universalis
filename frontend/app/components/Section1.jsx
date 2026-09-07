@@ -80,10 +80,12 @@ export default function Section1() {
           <button
             onClick={() => fileInputRef.current?.click()}
             disabled={uploading}
-            className="flex items-center gap-1.5 px-4 py-1.5 bg-white/90 backdrop-blur-sm text-[#001C3D] rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-white transition-colors shadow-sm disabled:opacity-60"
+            title="Change background"
+            className="w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm shadow flex items-center justify-center text-[#001c3d] hover:bg-white transition-colors disabled:opacity-60"
           >
-            <span className="material-symbols-outlined text-sm">photo_camera</span>
-            {uploading ? 'Uploading...' : 'Change background'}
+            <span className={`material-symbols-outlined text-lg ${uploading ? 'animate-pulse' : ''}`}>
+              {uploading ? 'hourglass_top' : 'edit'}
+            </span>
           </button>
           {error && (
             <p className="max-w-[220px] text-right text-[11px] text-red-300 bg-[#001C3D]/80 px-2 py-1 rounded-lg">
