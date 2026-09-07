@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
   const { data: profile } = await supabaseAdmin
     .from('profiles').select('role').eq('id', user.id).single();
 
-  if (!profile || profile.role?.toLowerCase() !== 'admin') {
+  if (!profile || !['board', 'admin'].includes(profile.role?.toLowerCase())) {
     return NextResponse.json({ error: 'Insufficient permissions.' }, { status: 403 });
   }
 
