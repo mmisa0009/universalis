@@ -3,16 +3,22 @@ import { getSupabase } from '@/lib/supabase';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
 import { NextRequest, NextResponse } from 'next/server';
 
-const ALLOWED_TYPES = [
+const IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+const DOCUMENT_TYPES = [
   'application/pdf',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-  'image/jpeg',
-  'image/png',
-  'image/webp',
 ];
+const ALLOWED_TYPES = [...IMAGE_TYPES, ...DOCUMENT_TYPES];
 
-const MAX_SIZE_MB = 10;
+// Images are capped well under common hosting-platform request body limits
+// (e.g. Vercel serverless functions hard-cap around ~4.5MB regardless of
+// what we allow here) — above that the platform itself rejects the request
+// before this route ever runs, returning a plain-text error page instead of
+// JSON and breaking the client's response parsing. Documents (PDFs, etc.)
+// keep the older, higher limit.
+const MAX_IMAGE_MB = 4;
+const MAX_DOCUMENT_MB = 10;
 
 export async function POST(req: NextRequest) {
   const authHeader = req.headers.get('authorization');
@@ -38,8 +44,9 @@ export async function POST(req: NextRequest) {
   if (!ALLOWED_TYPES.includes(file.type)) {
     return NextResponse.json({ error: 'File type not allowed.' }, { status: 400 });
   }
-  if (file.size > MAX_SIZE_MB * 1024 * 1024) {
-    return NextResponse.json({ error: `File exceeds ${MAX_SIZE_MB}MB limit.` }, { status: 400 });
+  const maxMb = IMAGE_TYPES.includes(file.type) ? MAX_IMAGE_MB : MAX_DOCUMENT_MB;
+  if (file.size > maxMb * 1024 * 1024) {
+    return NextResponse.json({ error: `File exceeds ${maxMb}MB limit.` }, { status: 400 });
   }
 
   const buffer = Buffer.from(await file.arrayBuffer());

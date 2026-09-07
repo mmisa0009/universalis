@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { uploadImage } from '@/lib/uploadImage';
 
 const TAG_COLORS = [
   { label: 'Blue', value: 'bg-[#d8e0f3] text-[#001C3D]' },
@@ -43,22 +44,13 @@ export default function AnnouncementModal({ announcement, onClose, onSave }) {
     }
   }, []);
 
-  async function uploadImage(file) {
+  async function doUpload(file) {
     setUploading(true);
     setError('');
     try {
-      const fd = new FormData();
-      fd.append('file', file);
-      fd.append('folder', 'announcements');
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-        body: fd,
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Upload failed');
-      setImageUrl(data.url);
-      setImagePreview(data.url);
+      const url = await uploadImage(file, 'announcements', token);
+      setImageUrl(url);
+      setImagePreview(url);
     } catch (e) {
       setError(e.message);
     } finally {
@@ -70,7 +62,7 @@ export default function AnnouncementModal({ announcement, onClose, onSave }) {
     const file = e.target.files?.[0];
     if (!file) return;
     setImagePreview(URL.createObjectURL(file));
-    uploadImage(file);
+    doUpload(file);
   }
 
   function handleDrop(e) {
@@ -79,7 +71,7 @@ export default function AnnouncementModal({ announcement, onClose, onSave }) {
     const file = e.dataTransfer.files?.[0];
     if (file && file.type.startsWith('image/')) {
       setImagePreview(URL.createObjectURL(file));
-      uploadImage(file);
+      doUpload(file);
     }
   }
 

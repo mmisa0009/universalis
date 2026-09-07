@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { uploadImage } from '@/lib/uploadImage';
 
 const BOARDS = [
   { value: 'EB', label: 'Executive Board' },
@@ -40,22 +41,13 @@ export default function MemberModal({ member, terms = [], defaultTerm = '', lock
 
   const isNewTerm = !lockTerm && term.trim() && !terms.some(t => t.toLowerCase() === term.trim().toLowerCase());
 
-  async function uploadImage(file) {
+  async function doUpload(file) {
     setUploading(true);
     setError('');
     try {
-      const fd = new FormData();
-      fd.append('file', file);
-      fd.append('folder', 'members');
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-        body: fd,
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Upload failed');
-      setImageUrl(data.url);
-      setImagePreview(data.url);
+      const url = await uploadImage(file, 'members', token);
+      setImageUrl(url);
+      setImagePreview(url);
     } catch (e) {
       setError(e.message);
     } finally {
@@ -67,7 +59,7 @@ export default function MemberModal({ member, terms = [], defaultTerm = '', lock
     const file = e.target.files?.[0];
     if (!file) return;
     setImagePreview(URL.createObjectURL(file));
-    uploadImage(file);
+    doUpload(file);
   }
 
   function handleDrop(e) {
@@ -76,7 +68,7 @@ export default function MemberModal({ member, terms = [], defaultTerm = '', lock
     const file = e.dataTransfer.files?.[0];
     if (file && file.type.startsWith('image/')) {
       setImagePreview(URL.createObjectURL(file));
-      uploadImage(file);
+      doUpload(file);
     }
   }
 
