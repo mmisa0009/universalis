@@ -42,6 +42,15 @@ alter table members enable row level security;
 -- service-role key and therefore bypass RLS — same pattern as the existing
 -- `announcements` and `documents` tables.
 
+-- IMPORTANT: bypassing RLS is not the same as having a table grant. The
+-- service_role Postgres role skips RLS checks, but it still needs an
+-- explicit GRANT to run INSERT/UPDATE/DELETE against this table — without
+-- it every write from the admin API routes fails with
+-- "permission denied for table members" even though the caller is a real
+-- admin. `announcements`/`documents` already have this grant from when they
+-- were first created; run this once for `members` too (safe to re-run):
+grant select, insert, update, delete on table members to service_role;
+
 -- Seed data: carried over from app/data/members.js (the current Fall 2025
 -- board) and app/data/previousBoards.js (Fall 2024, Fall 2021, Spring 2021,
 -- Spring 2020), so no existing member history is lost in the move to the
