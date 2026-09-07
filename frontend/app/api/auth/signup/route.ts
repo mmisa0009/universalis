@@ -55,13 +55,17 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: true }, { status: 201 });
   }
 
-  // Create profile with service role client (bypasses RLS)
+  // Create (or fill in) the profile with the service role client (bypasses RLS).
+  // A DB trigger on auth.users may already have inserted a blank profiles row
+  // for this user before we get here, so upsert instead of insert — otherwise
+  // this write silently no-ops on a duplicate-key conflict and the username
+  // never gets saved.
   const supabaseAdmin = getSupabaseAdmin();
   const { error: profileError } = await supabaseAdmin
     .from('profiles')
-    .insert({ id: userId, username });
+    .upsert({ id: userId, username }, { onConflict: 'id' });
 
-  if (profileError && !profileError.code?.includes('23505')) {
+  if (profileError) {
     return NextResponse.json({ error: profileError.message }, { status: 500 });
   }
 
