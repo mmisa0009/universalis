@@ -18,14 +18,20 @@ function MemberCard({ member, isAdmin, onEdit, confirmDelete, onRequestDelete, o
     return (
         <div className="relative flex-shrink-0 w-[85vw] sm:w-[200px] rounded-[16px] overflow-hidden bg-white/30 backdrop-blur-md border border-white/50 shadow-[0_4px_20px_rgba(0,28,61,0.13)] select-none">
             <div className="relative h-64 sm:h-auto sm:aspect-[3/4] w-full bg-[#f0ece6]">
-                <Image
-                    src={member.img}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                    draggable={false}
-                    unoptimized
-                />
+                {member.img ? (
+                    <Image
+                        src={member.img}
+                        alt={member.name}
+                        fill
+                        className="object-cover"
+                        draggable={false}
+                        unoptimized
+                    />
+                ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-[#001c3d]/20">
+                        <span className="material-symbols-outlined text-5xl">person</span>
+                    </div>
+                )}
                 <span className={`absolute top-2 left-2 text-[9px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full ${meta.pill}`}>
                     {member.board}
                 </span>
