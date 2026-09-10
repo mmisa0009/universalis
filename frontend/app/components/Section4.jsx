@@ -322,7 +322,6 @@ export default function Section4() {
                     member={modalState.mode === 'edit' ? modalState.item : null}
                     terms={allTerms}
                     defaultTerm={currentTerm}
-                    lockTerm={false}
                     onClose={() => setModalState(null)}
                     onSave={handleSave}
                 />

@@ -276,7 +276,6 @@ export default function PreviousBoardsPage() {
                     member={modalState.mode === 'edit' ? modalState.item : null}
                     terms={allTerms}
                     defaultTerm={active.label}
-                    lockTerm={true}
                     onClose={() => setModalState(null)}
                     onSave={handleSave}
                 />

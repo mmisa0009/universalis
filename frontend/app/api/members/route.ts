@@ -1,4 +1,5 @@
 import { getSupabase, getSupabaseAdmin } from '@/lib/supabase';
+import { parseChronologicalTermOrder } from '@/lib/termOrder';
 import { NextRequest, NextResponse } from 'next/server';
 
 const BOARDS = ['EB', 'SB', 'AB'];
@@ -53,9 +54,11 @@ export async function POST(req: NextRequest) {
   const cleanTerm = term.trim();
 
   // Reuse the term_order of an existing term with the same name (case-insensitive),
-  // appending after its last member. Otherwise this is a brand-new term — it
-  // becomes the newest one, which automatically archives every older term to
-  // the Previous Boards page.
+  // appending after its last member. Otherwise this is a new term: slot it in
+  // chronologically if it's named "<Season> <Year>" (e.g. "Fall 2019" lands
+  // before "Fall 2025" even though it's added later, instead of wrongly
+  // becoming the new "current" board) — or, for a one-off custom name that
+  // doesn't parse, fall back to treating it as the newest term.
   let termOrder: number;
   let sortOrder = 0;
 
@@ -66,9 +69,13 @@ export async function POST(req: NextRequest) {
     .order('sort_order', { ascending: false })
     .limit(1);
 
+  const parsedOrder = parseChronologicalTermOrder(cleanTerm);
+
   if (sameTerm && sameTerm.length > 0) {
     termOrder = sameTerm[0].term_order;
     sortOrder = sameTerm[0].sort_order + 1;
+  } else if (parsedOrder !== null) {
+    termOrder = parsedOrder;
   } else {
     const { data: maxRow } = await supabaseAdmin
       .from('members')
