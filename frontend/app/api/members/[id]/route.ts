@@ -1,4 +1,5 @@
 import { getSupabase, getSupabaseAdmin } from '@/lib/supabase';
+import { parseChronologicalTermOrder } from '@/lib/termOrder';
 import { NextRequest, NextResponse } from 'next/server';
 
 const BOARDS = ['EB', 'SB', 'AB'];
@@ -23,9 +24,11 @@ async function authorizeAdmin(req: NextRequest) {
 }
 
 // Resolves the term_order a member should have for `term`: reuses an existing
-// term's order if one already exists (ignoring this row itself), otherwise
-// assigns a new highest order — same rule the create route uses, so editing a
-// member's term tag can also start/rejoin a term.
+// term's order if one already exists (ignoring this row itself); otherwise
+// slots a "<Season> <Year>" term in chronologically (same rule the create
+// route uses, so moving a member to a different — even older — term never
+// wrongly makes it the new "current" board), falling back to the newest
+// order for a non-standard custom term name.
 async function resolveTermOrder(supabaseAdmin: ReturnType<typeof getSupabaseAdmin>, term: string, currentId: string) {
   const { data: sameTerm } = await supabaseAdmin
     .from('members')
@@ -35,6 +38,9 @@ async function resolveTermOrder(supabaseAdmin: ReturnType<typeof getSupabaseAdmi
     .limit(1);
 
   if (sameTerm && sameTerm.length > 0) return sameTerm[0].term_order;
+
+  const parsedOrder = parseChronologicalTermOrder(term);
+  if (parsedOrder !== null) return parsedOrder;
 
   const { data: maxRow } = await supabaseAdmin
     .from('members')

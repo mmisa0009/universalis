@@ -204,6 +204,7 @@ export default function PreviousBoardsPage() {
                                                 alt={`${member.name} – ${member.position}`}
                                                 className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                                                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
+                                                unoptimized
                                             />
 
                                             {isAdmin && (
@@ -275,7 +276,6 @@ export default function PreviousBoardsPage() {
                     member={modalState.mode === 'edit' ? modalState.item : null}
                     terms={allTerms}
                     defaultTerm={active.label}
-                    lockTerm={true}
                     onClose={() => setModalState(null)}
                     onSave={handleSave}
                 />

@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { uploadImage } from '@/lib/uploadImage';
 
 const BOARDS = [
   { value: 'EB', label: 'Executive Board' },
@@ -9,22 +10,21 @@ const BOARDS = [
   { value: 'AB', label: 'Academic Board' },
 ];
 
-// `lockTerm`: when true (used on the Previous Boards archive), the term can
-// only be picked from `terms` — editing history shouldn't accidentally spin
-// up a new "current" term. When false (used on the homepage), the term is a
-// free-text field with existing tags suggested: typing a brand-new tag there
-// is exactly how a new term becomes current and archives the old one.
+// Term is always a free-text field (with existing tags suggested): terms
+// shaped like "Fall 2025" are placed in chronological order automatically
+// (see lib/termOrder.ts), so typing a brand-new one — even an older one,
+// like adding "Fall 2019" after "Fall 2025" already exists — always slots
+// it into the right spot instead of always becoming the new "current" board.
 /**
  * @param {{
  *   member?: { id: string, name: string, position: string, board: string, term: string, img: string } | null,
  *   terms?: string[],
  *   defaultTerm?: string,
- *   lockTerm?: boolean,
  *   onClose: () => void,
  *   onSave: (member: any) => void,
  * }} props
  */
-export default function MemberModal({ member, terms = [], defaultTerm = '', lockTerm = false, onClose, onSave }) {
+export default function MemberModal({ member, terms = [], defaultTerm = '', onClose, onSave }) {
   const { token } = useAuth();
   const [name, setName] = useState(member?.name || '');
   const [position, setPosition] = useState(member?.position || '');
@@ -38,24 +38,15 @@ export default function MemberModal({ member, terms = [], defaultTerm = '', lock
   const [isDragOver, setIsDragOver] = useState(false);
   const fileInputRef = useRef(null);
 
-  const isNewTerm = !lockTerm && term.trim() && !terms.some(t => t.toLowerCase() === term.trim().toLowerCase());
+  const isNewTerm = term.trim() && !terms.some(t => t.toLowerCase() === term.trim().toLowerCase());
 
-  async function uploadImage(file) {
+  async function doUpload(file) {
     setUploading(true);
     setError('');
     try {
-      const fd = new FormData();
-      fd.append('file', file);
-      fd.append('folder', 'members');
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-        body: fd,
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Upload failed');
-      setImageUrl(data.url);
-      setImagePreview(data.url);
+      const url = await uploadImage(file, 'members', token);
+      setImageUrl(url);
+      setImagePreview(url);
     } catch (e) {
       setError(e.message);
     } finally {
@@ -67,7 +58,7 @@ export default function MemberModal({ member, terms = [], defaultTerm = '', lock
     const file = e.target.files?.[0];
     if (!file) return;
     setImagePreview(URL.createObjectURL(file));
-    uploadImage(file);
+    doUpload(file);
   }
 
   function handleDrop(e) {
@@ -76,7 +67,7 @@ export default function MemberModal({ member, terms = [], defaultTerm = '', lock
     const file = e.dataTransfer.files?.[0];
     if (file && file.type.startsWith('image/')) {
       setImagePreview(URL.createObjectURL(file));
-      uploadImage(file);
+      doUpload(file);
     }
   }
 
@@ -237,34 +228,22 @@ export default function MemberModal({ member, terms = [], defaultTerm = '', lock
               <label className="block text-xs font-bold uppercase tracking-widest text-[#44474e] mb-2">
                 Term <span className="text-red-400">*</span>
               </label>
-              {lockTerm ? (
-                <select
-                  value={term}
-                  onChange={e => setTerm(e.target.value)}
-                  className="w-full border-b-2 border-gray-200 focus:border-[#001C3D] outline-none py-2 text-[#001C3D] transition-colors bg-transparent text-sm"
-                >
-                  {terms.map(t => <option key={t} value={t}>{t}</option>)}
-                </select>
-              ) : (
-                <>
-                  <input
-                    type="text"
-                    list="member-term-options"
-                    value={term}
-                    onChange={e => setTerm(e.target.value)}
-                    placeholder="e.g. Fall 2025"
-                    className="w-full border-b-2 border-gray-200 focus:border-[#001C3D] outline-none py-2 text-[#001C3D] placeholder-gray-300 transition-colors bg-transparent text-sm"
-                  />
-                  <datalist id="member-term-options">
-                    {terms.map(t => <option key={t} value={t} />)}
-                  </datalist>
-                  <p className="text-xs text-[#001C3D]/40 mt-1.5">
-                    {isNewTerm
-                      ? 'New tag — this becomes the current board and moves the existing one to Previous Boards.'
-                      : 'Existing tag — this member joins that board.'}
-                  </p>
-                </>
-              )}
+              <input
+                type="text"
+                list="member-term-options"
+                value={term}
+                onChange={e => setTerm(e.target.value)}
+                placeholder="e.g. Fall 2025"
+                className="w-full border-b-2 border-gray-200 focus:border-[#001C3D] outline-none py-2 text-[#001C3D] placeholder-gray-300 transition-colors bg-transparent text-sm"
+              />
+              <datalist id="member-term-options">
+                {terms.map(t => <option key={t} value={t} />)}
+              </datalist>
+              <p className="text-xs text-[#001C3D]/40 mt-1.5">
+                {isNewTerm
+                  ? 'New term — use "Season Year" (e.g. "Fall 2019") so it\'s placed in chronological order automatically.'
+                  : 'Existing term — this member joins that board.'}
+              </p>
             </div>
 
             {error && (

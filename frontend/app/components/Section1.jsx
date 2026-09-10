@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useAuth } from '../context/AuthContext';
+import { uploadImage } from '@/lib/uploadImage';
 
 const DEFAULT_HERO_IMAGE = '/allMember.png';
 
@@ -11,6 +12,7 @@ export default function Section1() {
   const isAdmin = user && ['board', 'admin'].includes(user.role?.toLowerCase());
 
   const [heroImage, setHeroImage] = useState(DEFAULT_HERO_IMAGE);
+  const [imageFailed, setImageFailed] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
   const fileInputRef = useRef(null);
@@ -32,25 +34,17 @@ export default function Section1() {
     setUploading(true);
     setError('');
     try {
-      const fd = new FormData();
-      fd.append('file', file);
-      fd.append('folder', 'site');
-      const uploadRes = await fetch('/api/upload', {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-        body: fd,
-      });
-      const uploadData = await uploadRes.json();
-      if (!uploadRes.ok) throw new Error(uploadData.error || 'Upload failed');
+      const url = await uploadImage(file, 'site', token);
 
       const settingsRes = await fetch('/api/settings', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ key: 'hero_image_url', value: uploadData.url }),
+        body: JSON.stringify({ key: 'hero_image_url', value: url }),
       });
       const settingsData = await settingsRes.json();
       if (!settingsRes.ok) throw new Error(settingsData.error || 'Failed to save');
 
+      setImageFailed(false);
       setHeroImage(settingsData.value);
     } catch (e) {
       setError(e.message);
@@ -66,11 +60,12 @@ export default function Section1() {
       <div className="absolute inset-0">
         <Image
           key={heroImage}
-          src={heroImage}
+          src={imageFailed ? DEFAULT_HERO_IMAGE : heroImage}
           alt=""
           fill
           className="object-cover opacity-35"
           unoptimized
+          onError={() => setImageFailed(true)}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#001C3D] via-[#001C3D]/30 to-[#001C3D]/0" />
       </div>
