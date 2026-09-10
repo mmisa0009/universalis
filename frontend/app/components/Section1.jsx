@@ -11,19 +11,35 @@ export default function Section1() {
   const { user, token } = useAuth();
   const isAdmin = user && ['board', 'admin'].includes(user.role?.toLowerCase());
 
-  const [heroImage, setHeroImage] = useState(DEFAULT_HERO_IMAGE);
+  // Start with no image at all (rather than the default) so a visitor never
+  // sees the default flash onto screen before swapping to the real one —
+  // just the plain navy background very briefly until we know which image
+  // to actually show.
+  const [heroImage, setHeroImage] = useState(null);
   const [imageFailed, setImageFailed] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
   const fileInputRef = useRef(null);
 
   useEffect(() => {
+    // Show a cached value instantly on repeat visits while we confirm it in
+    // the background, so returning visitors see no gap at all.
+    let cached = null;
+    try {
+      cached = localStorage.getItem('hero_image_url');
+    } catch {}
+    if (cached) setHeroImage(cached);
+
     fetch('/api/settings')
       .then((r) => r.json())
       .then((data) => {
-        if (data.hero_image_url) setHeroImage(data.hero_image_url);
+        const url = data.hero_image_url || DEFAULT_HERO_IMAGE;
+        setHeroImage(url);
+        try { localStorage.setItem('hero_image_url', url); } catch {}
       })
-      .catch(() => {});
+      .catch(() => {
+        if (!cached) setHeroImage(DEFAULT_HERO_IMAGE);
+      });
   }, []);
 
   async function handleFileChange(e) {
@@ -58,15 +74,17 @@ export default function Section1() {
 
       {/* Background image with gradient overlay */}
       <div className="absolute inset-0">
-        <Image
-          key={heroImage}
-          src={imageFailed ? DEFAULT_HERO_IMAGE : heroImage}
-          alt=""
-          fill
-          className="object-cover opacity-35"
-          unoptimized
-          onError={() => setImageFailed(true)}
-        />
+        {heroImage && (
+          <Image
+            key={heroImage}
+            src={imageFailed ? DEFAULT_HERO_IMAGE : heroImage}
+            alt=""
+            fill
+            className="object-cover opacity-35"
+            unoptimized
+            onError={() => setImageFailed(true)}
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-[#001C3D] via-[#001C3D]/30 to-[#001C3D]/0" />
       </div>
 
