@@ -24,6 +24,7 @@ function MemberCard({ member, isAdmin, onEdit, confirmDelete, onRequestDelete, o
                     fill
                     className="object-cover"
                     draggable={false}
+                    unoptimized
                 />
                 <span className={`absolute top-2 left-2 text-[9px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full ${meta.pill}`}>
                     {member.board}
