@@ -198,14 +198,20 @@ export default function PreviousBoardsPage() {
 
                                         {/* Photo */}
                                         <div className="relative aspect-[3/4] bg-[#e8e0d8] mb-4 overflow-hidden">
-                                            <Image
-                                                fill
-                                                src={member.img}
-                                                alt={`${member.name} – ${member.position}`}
-                                                className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                                                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
-                                                unoptimized
-                                            />
+                                            {member.img ? (
+                                                <Image
+                                                    fill
+                                                    src={member.img}
+                                                    alt={`${member.name} – ${member.position}`}
+                                                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                                                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
+                                                    unoptimized
+                                                />
+                                            ) : (
+                                                <div className="absolute inset-0 flex items-center justify-center text-[#001c3d]/20">
+                                                    <span className="material-symbols-outlined text-5xl">person</span>
+                                                </div>
+                                            )}
 
                                             {isAdmin && (
                                                 <div className="absolute top-2 right-2 z-10 flex gap-1">
