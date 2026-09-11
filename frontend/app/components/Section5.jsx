@@ -26,12 +26,18 @@ export default function Section5() {
                         transform ideas into experiences.
                     </p>
                     <div className="flex flex-wrap gap-3 md:gap-4">
-                        <button className="px-6 md:px-8 py-3 bg-white text-[#001C3D] rounded-full font-bold hover:scale-105 transition-transform">
-                            <Link href="/Committees">Explore Committees</Link>
-                        </button>
-                        <button className="px-6 md:px-8 py-3 border border-white text-white rounded-full font-bold hover:bg-white/10 transition-colors">
-                            <Link href="mailto:ucmsa-secretary@maastrichtuniversity.nl">Ask questions</Link>
-                        </button>
+                        <Link
+                            href="/Committees"
+                            className="inline-block text-center px-6 md:px-8 py-3 bg-white text-[#001C3D] rounded-full font-bold hover:scale-105 transition-transform"
+                        >
+                            Explore Committees
+                        </Link>
+                        <Link
+                            href="mailto:ucmsa-secretary@maastrichtuniversity.nl"
+                            className="inline-block text-center px-6 md:px-8 py-3 border border-white text-white rounded-full font-bold hover:bg-white/10 transition-colors"
+                        >
+                            Ask questions
+                        </Link>
                     </div>
                 </div>
             </div>
