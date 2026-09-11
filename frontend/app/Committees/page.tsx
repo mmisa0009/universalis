@@ -22,6 +22,7 @@ export default function CommitteesPage() {
 
     const [committees, setCommittees] = useState<Committee[]>([]);
     const [loading, setLoading] = useState(true);
+    const [loadError, setLoadError] = useState('');
     const [search, setSearch] = useState('');
     const [modalState, setModalState] = useState<null | { mode: 'add' } | { mode: 'edit'; item: Committee }>(null);
     const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
@@ -29,9 +30,12 @@ export default function CommitteesPage() {
 
     useEffect(() => {
         fetch('/api/committees')
-            .then(r => r.json())
-            .then((data) => setCommittees(Array.isArray(data) ? data : []))
-            .catch(() => setCommittees([]))
+            .then(async (r) => {
+                const data = await r.json();
+                if (!r.ok) throw new Error(data.error || 'Failed to load committees.');
+                setCommittees(Array.isArray(data) ? data : []);
+            })
+            .catch((e) => setLoadError(e.message))
             .finally(() => setLoading(false));
     }, []);
 
@@ -102,7 +106,12 @@ export default function CommitteesPage() {
                     {loading && (
                         <p className="py-20 text-center text-[#74777f]">Loading committees...</p>
                     )}
-                    {!loading && filtered.length === 0 && (
+                    {!loading && loadError && (
+                        <p className="py-20 text-center text-red-500 text-sm">
+                            Couldn&apos;t load committees: {loadError}
+                        </p>
+                    )}
+                    {!loading && !loadError && filtered.length === 0 && (
                         <p className="py-20 text-center text-[#74777f]">No committees found.</p>
                     )}
                     {filtered.map((committee) => (
